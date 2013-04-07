@@ -1068,7 +1068,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">10m-admin-0-countries</Parameter>
+       <Parameter name="table">"10m-admin-0-countries"</Parameter>
     </Datasource>
   </Layer>
 
@@ -1344,7 +1344,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">10m-rivers-lake-centerlines</Parameter>
+       <Parameter name="table">"10m-rivers-lake-centerlines"</Parameter>
     </Datasource>
   </Layer>
 
@@ -1425,7 +1425,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">10m-lakes</Parameter>
+       <Parameter name="table">"10m-lakes"</Parameter>
     </Datasource>
   </Layer>
 
@@ -1455,7 +1455,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">10m-admin-1-states-provinces-lines</Parameter>
+       <Parameter name="table">"10m-admin-1-states-provinces-lines"</Parameter>
     </Datasource>
   </Layer>
 
@@ -1514,7 +1514,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">10m-admin-0-boundary-lines-claims</Parameter>
+       <Parameter name="table">"10m-admin-0-boundary-lines-claims"</Parameter>
     </Datasource>
   </Layer>
 
@@ -1573,7 +1573,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">10m-admin-0-boundary-lines-land</Parameter>
+       <Parameter name="table">"10m-admin-0-boundary-lines-land"</Parameter>
     </Datasource>
   </Layer>
 
@@ -1591,7 +1591,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">10m-glaciated-areas</Parameter>
+       <Parameter name="table">"10m-glaciated-areas"</Parameter>
     </Datasource>
   </Layer>
 
@@ -1637,7 +1637,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">10m-geographic-lines</Parameter>
+       <Parameter name="table">"10m-geographic-lines"</Parameter>
     </Datasource>
   </Layer>
 
@@ -1765,7 +1765,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">10m-admin-0-country-points</Parameter>
+       <Parameter name="table">"10m-admin-0-country-points"</Parameter>
     </Datasource>
   </Layer>
 
@@ -1798,7 +1798,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">10m-populated-places-simple</Parameter>
+       <Parameter name="table">"10m-populated-places-simple"</Parameter>
     </Datasource>
   </Layer>
 
