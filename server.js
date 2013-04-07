@@ -8,6 +8,11 @@ require("tilelive-mapnik").registerProtocols(tilelive);
 var app = express();
 
 tilelive.load("mapnik://./stylesheet.xml", function(err, source) {
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  }
+
   app.get("/", function(req, res) {
     res.send("Expecting something?");
   });
