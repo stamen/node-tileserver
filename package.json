@@ -1,0 +1,16 @@
+{
+  "name": "heroku-mapnik",
+  "version": "0.0.0",
+  "description": "ERROR: No README.md file found!",
+  "main": "index.js",
+  "repository": "",
+  "author": "",
+  "license": "BSD",
+  "dependencies": {
+    "tilelive-mapnik": "~0.5.0"
+  },
+  "engines": {
+    "node": "~0.8.21",
+    "npm": "~1.2.11"
+  }
+}
