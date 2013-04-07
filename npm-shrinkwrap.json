@@ -30,7 +30,7 @@
         "eio": {
           "version": "0.1.1",
           "from": "git+https://github.com/mojodna/node-eio.git#gyp",
-          "resolved": "git+https://github.com/mojodna/node-eio.git#df66de7b0390ac1d748cf9f6291b1bd21fa89a05"
+          "resolved": "git+https://github.com/mojodna/node-eio.git#bbb73eb3832fc852591f3e2deae06dfe39259720"
         },
         "mime": {
           "version": "1.2.9",
