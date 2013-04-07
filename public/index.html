@@ -1,0 +1,30 @@
+<html>
+<head>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
+<![endif]-->
+<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+<script src="http://mlevans.github.com/leaflet-hash/javascripts/leaflet-hash.js"></script>
+<style type="text/css">
+body, #map {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+  var map = L.map('map').setView([37.8, -122.4], 3);
+  new L.Hash(map);
+
+  L.tileLayer('/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '',
+    detectRetina: true
+  }).addTo(map);
+</script>
+</body>
+</html>
