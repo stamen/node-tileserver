@@ -1068,7 +1068,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">(SELECT ST_Affine(the_geom, sin(pi()/2), cos(pi()/2), cos(pi()/2), -sin(pi()/2), 0, 0) AS the_geom, * FROM "ne_10m_admin_0_countries") as "country-fill"</Parameter>
+       <Parameter name="table">(SELECT ST_Affine(the_geom, sin(pi()/2), cos(pi()/2), cos(pi()/2), -sin(pi()/2), 0, 0) AS the_geom, adm0_a3 FROM "ne_10m_admin_0_countries") as "country-fill"</Parameter>
     </Datasource>
   </Layer>
 
