@@ -21,1056 +21,1056 @@
   <Font face-name="Trebuchet MS Regular"/>
   <Font face-name="DejaVu Sans Book"/>
 </FontSet>
-<!-- <Style name="country&#45;fill" filter&#45;mode="first" > -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ZWE')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ZMB')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ZAF')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'YEM')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'WSM')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'WSB')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'WLF')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'WEB')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'VUT')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'VNM')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'VIR')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'VGB')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'VEN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'VCT')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'VAT')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'UZB')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'USG')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'USA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'URY')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'UMI')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'UKR')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'UGA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'TZA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'TWN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'TUV')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'TUR')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'TUN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'TTO')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'TON')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'TLS')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'TKM')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'TJK')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'THA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'TGO')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'TCD')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'TCA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SYR')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SYC')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SWZ')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SWE')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SVN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SVK')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SUR')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'STP')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SRB')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SPM')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SOM')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SOL')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SMR')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SLV')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SLE')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SLB')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SHN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SGS')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SGP')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SEN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SDS')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SDN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SAU')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'SAH')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'RWA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'RUS')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ROU')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'QAT')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'PYF')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'PRY')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'PRT')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'PRK')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'PRI')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'POL')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'PNG')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'PLW')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'PHL')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'PER')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'PCN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'PAN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'PAK')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'OMN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'NZL')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'NRU')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'NPL')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'NOR')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'NLD')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'NIU')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'NIC')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'NGA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'NFK')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'NER')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'NCL')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'NAM')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MYS')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MWI')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MUS')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MSR')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MRT')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MOZ')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MNP')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MNG')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MNE')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MMR')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MLT')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MLI')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MKD')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MHL')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MEX')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MDV')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MDG')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MDA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MCO')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MAR')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MAF')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'MAC')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'LVA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'LUX')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'LTU')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'LSO')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'LKA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'LIE')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'LCA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'LBY')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'LBR')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'LBN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'LAO')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'KWT')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'KOS')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'KOR')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'KNM')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ffffff" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'KNA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'KIR')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'KHM')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'KGZ')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'KEN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'KAZ')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'KAS')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ffffff" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'KAB')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'JPN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'JOR')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'JEY')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'JAM')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ITA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ISR')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ISL')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'IRQ')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'IRN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'IRL')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'IOT')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'IOA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'IND')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'IMN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'IDN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'HUN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'HTI')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'HRV')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'HND')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'HMD')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'HKG')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'GUY')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'GUM')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'GTM')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'GRL')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'GRD')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'GRC')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'GNQ')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'GNB')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'GMB')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'GIN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'GIB')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'GHA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'GGY')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'GEO')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'GBR')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'GAZ')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'GAB')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'FSM')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'FRO')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'FRA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'FLK')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'FJI')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'FIN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ETH')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'EST')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ESP')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ESB')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ERI')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'EGY')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ECU')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'DZA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'DOM')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'DNK')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'DMA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'DJI')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'DEU')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'CZE')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'CYP')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'CYN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'CYM')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'CUW')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'CUB')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'CSI')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'CRI')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'CPV')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'COM')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'COL')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'COK')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'COG')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'COD')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'CNM')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ffffff" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'CMR')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'CLP')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'CIV')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'CHN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'CHL')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'CHE')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'CAN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'CAF')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'BWA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'BTN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'BRN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'BRB')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'BRA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'BOL')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'BMU')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'BLZ')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'BLR')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'BLM')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'BIH')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'BHS')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'BHR')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'BGR')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'BGD')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'BFA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'BEN')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'BEL')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'BDI')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'AZE')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdc663" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'AUT')</Filter> -->
-<!--     <PolygonSymbolizer fill="#aadb78" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'AUS')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ATG')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ATF')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ATC')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ATA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f0f8ff" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ASM')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ARM')</Filter> -->
-<!--     <PolygonSymbolizer fill="#f3c1d3" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ARG')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ARE')</Filter> -->
-<!--     <PolygonSymbolizer fill="#d3e46f" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'AND')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ALD')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ALB')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'AIA')</Filter> -->
-<!--     <PolygonSymbolizer fill="#a3cec5" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'AGO')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fae364" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'AFG')</Filter> -->
-<!--     <PolygonSymbolizer fill="#fdaf6b" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <Filter>([adm0_a3] = 'ABW')</Filter> -->
-<!--     <PolygonSymbolizer fill="#ceb5cf" /> -->
-<!--   </Rule> -->
-<!-- </Style> -->
-<!-- <Style name="country&#45;land&#45;glow&#45;outer" filter&#45;mode="first" > -->
-<!--   <Rule> -->
-<!--     <MaxScaleDenominator>200000000</MaxScaleDenominator> -->
-<!--     <LineSymbolizer stroke="#226688" stroke&#45;width="5" stroke&#45;opacity="0.1" stroke&#45;linejoin="round" /> -->
-<!--   </Rule> -->
-<!-- </Style> -->
-<!-- <Style name="country&#45;land&#45;glow&#45;inner" filter&#45;mode="first" > -->
-<!--   <Rule> -->
-<!--     <MaxScaleDenominator>100000000</MaxScaleDenominator> -->
-<!--     <LineSymbolizer stroke&#45;width="2.4" stroke="#226688" stroke&#45;opacity="0.8" stroke&#45;linejoin="round" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <MaxScaleDenominator>200000000</MaxScaleDenominator> -->
-<!--     <MinScaleDenominator>100000000</MinScaleDenominator> -->
-<!--     <LineSymbolizer stroke&#45;width="2" stroke="#226688" stroke&#45;opacity="0.8" stroke&#45;linejoin="round" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <MaxScaleDenominator>500000000</MaxScaleDenominator> -->
-<!--     <MinScaleDenominator>200000000</MinScaleDenominator> -->
-<!--     <LineSymbolizer stroke&#45;width="1.6" stroke="#226688" stroke&#45;opacity="0.8" stroke&#45;linejoin="round" /> -->
-<!--   </Rule> -->
-<!--   <Rule> -->
-<!--     <MinScaleDenominator>500000000</MinScaleDenominator> -->
-<!--     <LineSymbolizer stroke&#45;width="1.2" stroke="#226688" stroke&#45;opacity="0.8" stroke&#45;linejoin="round" /> -->
-<!--   </Rule> -->
-<!-- </Style> -->
-<!-- <Layer name="country" -->
-<!--   srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"> -->
-<!--     <StyleName>country&#45;land&#45;glow&#45;inner</StyleName> -->
-<!--     <StyleName>country&#45;land&#45;glow&#45;outer</StyleName> -->
-<!--     <StyleName>country&#45;fill</StyleName> -->
-<!--     <Datasource> -->
-<!--        <Parameter name="type">postgis</Parameter> -->
-<!--        <Parameter name="host">ec2&#45;107&#45;20&#45;102&#45;198.compute&#45;1.amazonaws.com</Parameter> -->
-<!--        <Parameter name="dbname">natural_earth</Parameter> -->
-<!--        <Parameter name="user">heroku</Parameter> -->
-<!--        <Parameter name="password">skymaps</Parameter> -->
-<!--        <Parameter name="table">(SELECT adm0_a3, ST_Affine(the_geom, sin(pi()/2), cos(pi()/2), cos(pi()/2), &#45;sin(pi()/2), 0, 0) AS the_geom FROM "ne_10m_admin_0_countries") as "country&#45;fill"</Parameter> -->
-<!--     </Datasource> -->
-<!--   </Layer> -->
+<Style name="country-fill" filter-mode="first" >
+  <Rule>
+    <Filter>([adm0_a3] = 'ZWE')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ZMB')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ZAF')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'YEM')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'WSM')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'WSB')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'WLF')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'WEB')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'VUT')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'VNM')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'VIR')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'VGB')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'VEN')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'VCT')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'VAT')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'UZB')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'USG')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'USA')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'URY')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'UMI')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'UKR')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'UGA')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'TZA')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'TWN')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'TUV')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'TUR')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'TUN')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'TTO')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'TON')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'TLS')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'TKM')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'TJK')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'THA')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'TGO')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'TCD')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'TCA')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SYR')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SYC')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SWZ')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SWE')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SVN')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SVK')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SUR')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'STP')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SRB')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SPM')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SOM')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SOL')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SMR')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SLV')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SLE')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SLB')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SHN')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SGS')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SGP')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SEN')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SDS')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SDN')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SAU')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'SAH')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'RWA')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'RUS')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ROU')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'QAT')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'PYF')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'PRY')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'PRT')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'PRK')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'PRI')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'POL')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'PNG')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'PLW')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'PHL')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'PER')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'PCN')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'PAN')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'PAK')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'OMN')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'NZL')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'NRU')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'NPL')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'NOR')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'NLD')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'NIU')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'NIC')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'NGA')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'NFK')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'NER')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'NCL')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'NAM')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MYS')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MWI')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MUS')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MSR')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MRT')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MOZ')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MNP')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MNG')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MNE')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MMR')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MLT')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MLI')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MKD')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MHL')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MEX')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MDV')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MDG')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MDA')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MCO')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MAR')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MAF')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'MAC')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'LVA')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'LUX')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'LTU')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'LSO')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'LKA')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'LIE')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'LCA')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'LBY')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'LBR')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'LBN')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'LAO')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'KWT')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'KOS')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'KOR')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'KNM')</Filter>
+    <PolygonSymbolizer fill="#ffffff" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'KNA')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'KIR')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'KHM')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'KGZ')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'KEN')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'KAZ')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'KAS')</Filter>
+    <PolygonSymbolizer fill="#ffffff" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'KAB')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'JPN')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'JOR')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'JEY')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'JAM')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ITA')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ISR')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ISL')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'IRQ')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'IRN')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'IRL')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'IOT')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'IOA')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'IND')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'IMN')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'IDN')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'HUN')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'HTI')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'HRV')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'HND')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'HMD')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'HKG')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'GUY')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'GUM')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'GTM')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'GRL')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'GRD')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'GRC')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'GNQ')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'GNB')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'GMB')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'GIN')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'GIB')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'GHA')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'GGY')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'GEO')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'GBR')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'GAZ')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'GAB')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'FSM')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'FRO')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'FRA')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'FLK')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'FJI')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'FIN')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ETH')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'EST')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ESP')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ESB')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ERI')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'EGY')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ECU')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'DZA')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'DOM')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'DNK')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'DMA')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'DJI')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'DEU')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'CZE')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'CYP')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'CYN')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'CYM')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'CUW')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'CUB')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'CSI')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'CRI')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'CPV')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'COM')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'COL')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'COK')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'COG')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'COD')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'CNM')</Filter>
+    <PolygonSymbolizer fill="#ffffff" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'CMR')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'CLP')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'CIV')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'CHN')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'CHL')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'CHE')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'CAN')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'CAF')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'BWA')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'BTN')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'BRN')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'BRB')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'BRA')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'BOL')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'BMU')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'BLZ')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'BLR')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'BLM')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'BIH')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'BHS')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'BHR')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'BGR')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'BGD')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'BFA')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'BEN')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'BEL')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'BDI')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'AZE')</Filter>
+    <PolygonSymbolizer fill="#fdc663" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'AUT')</Filter>
+    <PolygonSymbolizer fill="#aadb78" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'AUS')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ATG')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ATF')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ATC')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ATA')</Filter>
+    <PolygonSymbolizer fill="#f0f8ff" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ASM')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ARM')</Filter>
+    <PolygonSymbolizer fill="#f3c1d3" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ARG')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ARE')</Filter>
+    <PolygonSymbolizer fill="#d3e46f" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'AND')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ALD')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ALB')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'AIA')</Filter>
+    <PolygonSymbolizer fill="#a3cec5" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'AGO')</Filter>
+    <PolygonSymbolizer fill="#fae364" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'AFG')</Filter>
+    <PolygonSymbolizer fill="#fdaf6b" />
+  </Rule>
+  <Rule>
+    <Filter>([adm0_a3] = 'ABW')</Filter>
+    <PolygonSymbolizer fill="#ceb5cf" />
+  </Rule>
+</Style>
+<Style name="country-land-glow-outer" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>200000000</MaxScaleDenominator>
+    <LineSymbolizer stroke="#226688" stroke-width="5" stroke-opacity="0.1" stroke-linejoin="round" />
+  </Rule>
+</Style>
+<Style name="country-land-glow-inner" filter-mode="first" >
+  <Rule>
+    <MaxScaleDenominator>100000000</MaxScaleDenominator>
+    <LineSymbolizer stroke-width="2.4" stroke="#226688" stroke-opacity="0.8" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000000</MaxScaleDenominator>
+    <MinScaleDenominator>100000000</MinScaleDenominator>
+    <LineSymbolizer stroke-width="2" stroke="#226688" stroke-opacity="0.8" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>500000000</MaxScaleDenominator>
+    <MinScaleDenominator>200000000</MinScaleDenominator>
+    <LineSymbolizer stroke-width="1.6" stroke="#226688" stroke-opacity="0.8" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>500000000</MinScaleDenominator>
+    <LineSymbolizer stroke-width="1.2" stroke="#226688" stroke-opacity="0.8" stroke-linejoin="round" />
+  </Rule>
+</Style>
+<Layer name="country"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>country-land-glow-inner</StyleName>
+    <StyleName>country-land-glow-outer</StyleName>
+    <StyleName>country-fill</StyleName>
+    <Datasource>
+       <Parameter name="type">postgis</Parameter>
+       <Parameter name="host">ec2-107-20-102-198.compute-1.amazonaws.com</Parameter>
+       <Parameter name="dbname">natural_earth</Parameter>
+       <Parameter name="user">heroku</Parameter>
+       <Parameter name="password">skymaps</Parameter>
+       <Parameter name="table">(SELECT ST_Affine(the_geom, sin(pi()/2), cos(pi()/2), cos(pi()/2), -sin(pi()/2), 0, 0) AS the_geom, * FROM "ne_10m_admin_0_countries") as "country-fill"</Parameter>
+    </Datasource>
+  </Layer>
 
 <Style name="rivers" filter-mode="first" >
   <Rule>
