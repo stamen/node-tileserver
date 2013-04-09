@@ -1068,7 +1068,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">(SELECT ST_Reverse(ST_Affine(the_geom, sin(pi()/2), cos(pi()/2), cos(pi()/2), -sin(pi()/2), 0, 0)) AS the_geom, adm0_a3 FROM "ne_10m_admin_0_countries") as "country-fill"</Parameter>
+       <Parameter name="table">(SELECT ST_RotateX(the_geom, pi()) AS the_geom, adm0_a3 FROM "ne_10m_admin_0_countries") as "country-fill"</Parameter>
     </Datasource>
   </Layer>
 
@@ -1344,7 +1344,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">(SELECT scalerank, ST_Reverse(ST_Affine(the_geom, sin(pi()/2), cos(pi()/2), cos(pi()/2), -sin(pi()/2), 0, 0)) AS the_geom FROM "ne_10m_rivers_lake_centerlines") as "rivers"</Parameter>
+       <Parameter name="table">(SELECT scalerank, ST_RotateX(the_geom, pi()) AS the_geom FROM "ne_10m_rivers_lake_centerlines") as "rivers"</Parameter>
     </Datasource>
   </Layer>
 
@@ -1425,7 +1425,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">(SELECT scalerank, ST_Reverse(ST_Affine(the_geom, sin(pi()/2), cos(pi()/2), cos(pi()/2), -sin(pi()/2), 0, 0)) AS the_geom FROM "ne_10m_lakes") as "lakes"</Parameter>
+       <Parameter name="table">(SELECT scalerank, ST_RotateX(the_geom, pi()) AS the_geom FROM "ne_10m_lakes") as "lakes"</Parameter>
     </Datasource>
   </Layer>
 
@@ -1455,7 +1455,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">(SELECT adm0_a3, ST_Reverse(ST_Affine(the_geom, sin(pi()/2), cos(pi()/2), cos(pi()/2), -sin(pi()/2), 0, 0)) AS the_geom FROM "ne_10m_admin_1_states_provinces_lines") as "state"</Parameter>
+       <Parameter name="table">(SELECT adm0_a3, ST_RotateX(the_geom, pi()) AS the_geom FROM "ne_10m_admin_1_states_provinces_lines") as "state"</Parameter>
     </Datasource>
   </Layer>
 
@@ -1514,7 +1514,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">(SELECT featurecla, ST_Reverse(ST_Affine(the_geom, sin(pi()/2), cos(pi()/2), cos(pi()/2), -sin(pi()/2), 0, 0)) AS the_geom FROM "ne_10m_admin_0_disputed_areas") as "admin-0-line-disputed"</Parameter>
+       <Parameter name="table">(SELECT featurecla, ST_RotateX(the_geom, pi()) AS the_geom FROM "ne_10m_admin_0_disputed_areas") as "admin-0-line-disputed"</Parameter>
     </Datasource>
   </Layer>
 
@@ -1573,7 +1573,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">(SELECT featurecla, ST_Reverse(ST_Affine(the_geom, sin(pi()/2), cos(pi()/2), cos(pi()/2), -sin(pi()/2), 0, 0)) AS the_geom FROM "ne_10m_admin_0_boundary_lines_land") as "admin-0-line-land"</Parameter>
+       <Parameter name="table">(SELECT featurecla, ST_RotateX(the_geom, pi()) AS the_geom FROM "ne_10m_admin_0_boundary_lines_land") as "admin-0-line-land"</Parameter>
     </Datasource>
   </Layer>
 
@@ -1591,7 +1591,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">(SELECT ST_Reverse(ST_Affine(the_geom, sin(pi()/2), cos(pi()/2), cos(pi()/2), -sin(pi()/2), 0, 0)) AS the_geom FROM "ne_10m_glaciated_areas") as "glacier"</Parameter>
+       <Parameter name="table">(SELECT ST_RotateX(the_geom, pi()) AS the_geom FROM "ne_10m_glaciated_areas") as "glacier"</Parameter>
     </Datasource>
   </Layer>
 
@@ -1637,7 +1637,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">(SELECT scalerank, name, ST_Reverse(ST_Affine(the_geom, sin(pi()/2), cos(pi()/2), cos(pi()/2), -sin(pi()/2), 0, 0)) AS the_geom FROM "ne_10m_geographic_lines" WHERE gid != 6) as "geo-lines"</Parameter>
+       <Parameter name="table">(SELECT scalerank, name, ST_RotateX(the_geom, pi()) AS the_geom FROM "ne_10m_geographic_lines" WHERE gid != 6) as "geo-lines"</Parameter>
     </Datasource>
   </Layer>
 
@@ -1765,7 +1765,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">(SELECT scalerank, name, abbrev, ST_Reverse(ST_Affine(the_geom, sin(pi()/2), cos(pi()/2), cos(pi()/2), -sin(pi()/2), 0, 0)) AS the_geom FROM "ne_10m_admin_0_country_points") as "country-name"</Parameter>
+       <Parameter name="table">(SELECT scalerank, name, abbrev, ST_RotateX(the_geom, pi()) AS the_geom FROM "ne_10m_admin_0_country_points") as "country-name"</Parameter>
     </Datasource>
   </Layer>
 
@@ -1798,7 +1798,7 @@
        <Parameter name="dbname">natural_earth</Parameter>
        <Parameter name="user">heroku</Parameter>
        <Parameter name="password">skymaps</Parameter>
-       <Parameter name="table">(SELECT adm0cap, name, worldcity, ST_Reverse(ST_Affine(the_geom, sin(pi()/2), cos(pi()/2), cos(pi()/2), -sin(pi()/2), 0, 0)) AS the_geom FROM "ne_10m_populated_places_simple") as "cities"</Parameter>
+       <Parameter name="table">(SELECT adm0cap, name, worldcity, ST_RotateX(the_geom, pi()) AS the_geom FROM "ne_10m_populated_places_simple") as "cities"</Parameter>
     </Datasource>
   </Layer>
 
