@@ -18,6 +18,7 @@ tilelive.load("mapnik://./stylesheet.xml", function(err, source) {
     process.exit(1);
   }
 
+  // TODO not all tiles will be PNGs
   app.get("/:z/:x/:y.png", function(req, res) {
     source.getTile(req.params.z, req.params.x, req.params.y, function(err, tile, headers) {
       if (err) {
