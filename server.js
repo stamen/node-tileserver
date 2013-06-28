@@ -1,6 +1,7 @@
 "use strict";
 
-var express = require("express"),
+var cors = require("cors"),
+    express = require("express"),
     tilelive = require("tilelive");
 
 require("tilelive-mapnik").registerProtocols(tilelive);
@@ -8,7 +9,7 @@ require("tilelive-mapnik").registerProtocols(tilelive);
 var app = express();
 
 app.configure(function() {
-  // app.use(middleware.CORS);
+  app.use(cors());
   app.use(express.static(__dirname + "/public"));
 });
 
