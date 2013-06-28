@@ -23,7 +23,9 @@ body, #map {
   L.tileLayer('/{z}/{x}/{y}.png', {
     maxZoom: 18,
     attribution: '',
-    detectRetina: true
+    detectRetina: true,
+    // tileSize: 1024,
+    // zoomOffset: -2
   }).addTo(map);
 </script>
 </body>
