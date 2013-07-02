@@ -4,7 +4,8 @@
   "dependencies": {
     "tilelive-mapnik": {
       "version": "0.5.0",
-      "from": "tilelive-mapnik@~0.5.0",
+      "from": "git+https://github.com/mapbox/tilelive-mapnik.git",
+      "resolved": "git+https://github.com/mapbox/tilelive-mapnik.git#d209336ceab2afd4a92d96f175620edbeefd90de"
       "dependencies": {
         "step": {
           "version": "0.0.5",

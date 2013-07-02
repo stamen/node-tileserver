@@ -7,7 +7,7 @@
   "author": "",
   "license": "BSD",
   "dependencies": {
-    "tilelive-mapnik": "~0.5.0",
+    "tilelive-mapnik": "git+https://github.com/mapbox/tilelive-mapnik.git",
     "tilelive": "~4.4.3",
     "express": "~3.1.1",
     "cors": "~1.0.1"
