@@ -21,7 +21,7 @@ app.configure(function() {
 
 // tilelive.load("mapnik://./stylesheet.xml?metatile=15&scale=4&tileSize=1024&bufferSize=1024", function(err, source) {
 tilelive.load(util.format("mapnik://./stylesheet.xml?metatile=%d&bufferSize=%d&tileSize=%d&scale=%d",
-                          META_TILE,
+                          METATILE,
                           BUFFER_SIZE,
                           TILE_SIZE,
                           SCALE), function(err, source) {
