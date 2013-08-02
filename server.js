@@ -1,11 +1,15 @@
 "use strict";
 
-var util = require("util");
+var path = require("path"),
+    util = require("util");
 var cors = require("cors"),
     express = require("express"),
-    tilelive = require("tilelive");
+    tilelive = require("tilelive"),
+    tileliveMapnik = require("tilelive-mapnik");
 
-require("tilelive-mapnik").registerProtocols(tilelive);
+// register fonts (relative to the current working directory)
+tileliveMapnik.mapnik.register_fonts(path.join(process.cwd(), "fonts"), { recurse: true });
+tileliveMapnik.registerProtocols(tilelive);
 
 var SCALE = process.env.SCALE || 1;
 var METATILE = process.env.METATILE || 4;
@@ -19,7 +23,7 @@ app.configure(function() {
   app.use(express.static(__dirname + "/public"));
 });
 
-// tilelive.load("mapnik://./stylesheet.xml?metatile=15&scale=4&tileSize=1024&bufferSize=1024", function(err, source) {
+// load stylesheet.xml from the current directory
 tilelive.load(util.format("mapnik://./stylesheet.xml?metatile=%d&bufferSize=%d&tileSize=%d&scale=%d",
                           METATILE,
                           BUFFER_SIZE,
