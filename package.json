@@ -1,19 +1,21 @@
 {
-  "name": "heroku-mapnik",
+  "name": "tileserver",
   "version": "0.0.0",
-  "description": "ERROR: No README.md file found!",
-  "main": "index.js",
-  "repository": "",
-  "author": "",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stamen/node-tileserver.git"
+  },
+  "author": "Seth Fitzsimmons <seth@mojodna.net>",
   "license": "BSD",
   "dependencies": {
-    "tilelive-mapnik": "git+https://github.com/mapbox/tilelive-mapnik.git",
-    "tilelive": "~4.4.3",
+    "tilelive-mapnik": "git+https://github.com/mojodna/tilelive-mapnik.git",
+    "tilelive": "~4.5.0",
     "express": "~3.1.1",
     "cors": "~1.0.1"
   },
   "engines": {
-    "node": "~0.8.21",
-    "npm": "~1.2.11"
+    "node": "~0.10.15",
+    "npm": "~1.3.5"
   }
 }
