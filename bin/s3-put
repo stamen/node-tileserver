@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+
+"use strict";
+
+var fs = require("fs"),
+    path = require("path"),
+    util = require("util");
+
+var env = require("require-env"),
+    request = require("request");
+
+var ACCESS_KEY_ID = env.require("AWS_ACCESS_KEY_ID"),
+    SECRET_ACCESS_KEY = env.require("AWS_SECRET_ACCESS_KEY"),
+    S3_BUCKET = env.require("S3_BUCKET");
+
+var filename = process.argv[2];
+
+console.log("Uploading %s", filename);
+
+request.put({
+  uri: util.format("http://%s.s3.amazonaws.com/%s", S3_BUCKET, filename),
+  aws: {
+    key: ACCESS_KEY_ID,
+    secret: SECRET_ACCESS_KEY,
+    bucket: S3_BUCKET
+  },
+  body: fs.readFileSync(path.join(process.cwd(), filename)),
+  headers: {
+    "x-amz-acl": "public-read",
+    "Content-Type": "application/x-gzip",
+  }
+}, function(err, response, body) {
+  if (err) {
+    throw err;
+  }
+
+  if (response.statusCode === 200) {
+    console.log("done.");
+  } else {
+    console.log(response.statusCode);
+    console.log(body);
+  }
+});
