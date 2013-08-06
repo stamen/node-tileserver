@@ -24,7 +24,7 @@ request.put({
     secret: SECRET_ACCESS_KEY,
     bucket: S3_BUCKET
   },
-  body: fs.readFileSync(path.join(process.cwd(), filename)),
+  body: fs.readFileSync(filename),
   headers: {
     "x-amz-acl": "public-read",
     "Content-Type": "application/x-gzip",
