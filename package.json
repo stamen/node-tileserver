@@ -14,7 +14,9 @@
     "express": "~3.1.1",
     "cors": "~1.0.1",
     "request": "~2.25.0",
-    "require-env": "0.0.3"
+    "require-env": "0.0.3",
+    "carto": "~0.9.4",
+    "millstone": "~0.5.15"
   },
   "engines": {
     "node": "~0.10.15",
