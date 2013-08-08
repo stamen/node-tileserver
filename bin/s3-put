@@ -18,7 +18,7 @@ var filename = process.argv[2];
 console.log("Uploading %s", filename);
 
 request.put({
-  uri: util.format("http://%s.s3.amazonaws.com/%s", S3_BUCKET, filename),
+  uri: util.format("http://%s.s3.amazonaws.com/%s", S3_BUCKET, path.basename(filename)),
   aws: {
     key: ACCESS_KEY_ID,
     secret: SECRET_ACCESS_KEY,
