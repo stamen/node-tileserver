@@ -16,7 +16,8 @@
     "request": "~2.25.0",
     "require-env": "0.0.3",
     "carto": "https://github.com/mapbox/carto/tarball/master",
-    "millstone": "https://github.com/mapbox/millstone/tarball/master"
+    "millstone": "https://github.com/mapbox/millstone/tarball/master",
+    "js-yaml": "~2.1.0"
   },
   "engines": {
     "node": "~0.10.15",
