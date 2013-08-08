@@ -15,7 +15,7 @@
     "cors": "~1.0.1",
     "request": "~2.25.0",
     "require-env": "0.0.3",
-    "carto": "~0.9.4",
+    "carto": "https://github.com/mapbox/carto/tarball/master",
     "millstone": "https://github.com/mapbox/millstone/tarball/master"
   },
   "engines": {
