@@ -9,7 +9,7 @@
   "author": "Seth Fitzsimmons <seth@mojodna.net>",
   "license": "BSD",
   "dependencies": {
-    "tilelive-mapnik": "https://github.com/mojodna/tilelive-mapnik/tarball/master",
+    "tilelive-mapnik": "https://github.com/mapbox/tilelive-mapnik/tarball/master",
     "tilelive": "~4.5.0",
     "express": "~3.1.1",
     "cors": "~1.0.1",
