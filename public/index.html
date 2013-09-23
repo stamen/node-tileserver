@@ -27,13 +27,22 @@ body, #map {
 
   new L.Hash(map);
 
-  L.tileLayer('/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: '',
-    detectRetina: true,
-    // tileSize: 1024,
-    // zoomOffset: -2
-  }).addTo(map);
+  var options = {
+    maxZoom: 20, // TODO load this (and minZoom) from project.mml if available
+    attribution: ""
+  }
+  var provider = "/{z}/{x}/{y}.png";
+
+  var mediaQuery = "(-webkit-min-device-pixel-ratio: 1.5),\
+                    (min--moz-device-pixel-ratio: 1.5),\
+                    (-o-min-device-pixel-ratio: 3/2),\
+                    (min-resolution: 1.5dppx)";
+  if (window.devicePixelRatio > 1 ||
+      (window.matchMedia && window.matchMedia(mediaQuery).matches)) {
+    provider = "/{z}/{x}/{y}@2x.png";
+  }
+
+  L.tileLayer(provider, options).addTo(map);
 </script>
 </body>
 </html>

@@ -2,13 +2,13 @@
 
 var path = require("path"),
     util = require("util");
-var cors = require("cors"),
+
+var async = require("async"),
+    cors = require("cors"),
     express = require("express"),
     tilelive = require("tilelive"),
     tileliveMapnik = require("tilelive-mapnik");
 
-// register fonts (relative to the current working directory)
-tileliveMapnik.mapnik.register_fonts(path.join(process.cwd(), "fonts"), { recurse: true });
 tileliveMapnik.registerProtocols(tilelive);
 
 var SCALE = process.env.SCALE || 1;
@@ -19,37 +19,85 @@ var TILE_SIZE = process.env.TILE_SIZE || 256;
 var app = express();
 
 app.configure(function() {
+  app.disable("x-powered-by");
+  app.use(express.responseTime());
   app.use(cors());
   app.use(express.static(__dirname + "/public"));
 });
 
-// load stylesheet.xml from the current directory
-tilelive.load(util.format("mapnik://./stylesheet.xml?metatile=%d&bufferSize=%d&tileSize=%d&scale=%d",
-                          METATILE,
-                          BUFFER_SIZE,
-                          TILE_SIZE,
-                          SCALE), function(err, source) {
-  if (err) {
-    console.error(err);
-    process.exit(1);
-  }
+app.configure("development", function() {
+  app.use(express.logger());
+});
 
-  // TODO templatize index.html to center on the right location and use correct
-  // tile size / zoom offsets
+// TODO templatize index.html to center on the right location and use correct
+// tile size / zoom offsets
 
-  // TODO not all tiles will be PNGs
-  app.get("/:z/:x/:y.png", function(req, res) {
-    source.getTile(req.params.z, req.params.x, req.params.y, function(err, tile, headers) {
+async.parallel([
+  function(done) {
+    tilelive.load(util.format("mapnik://./stylesheet.xml?metatile=%d&bufferSize=%d&tileSize=%d&scale=%d",
+                              METATILE,
+                              BUFFER_SIZE,
+                              TILE_SIZE,
+                              SCALE), function(err, source) {
       if (err) {
-        console.warn(err);
-        return res.send(500);
+        console.error(err);
+        process.exit(1);
       }
 
-      res.set(headers);
-      res.send(tile);
-    });
-  });
+      // TODO not all tiles will be PNGs
+      app.get(/^\/(\d+)\/(\d+)\/(\d+)\.png/, function(req, res) {
+        var z = +req.params[0],
+            x = +req.params[1],
+            y = +req.params[2];
 
+        source.getTile(z, x, y, function(err, tile, headers) {
+          if (err) {
+            console.warn(err);
+            return res.send(500);
+          }
+
+          res.set(headers);
+          res.send(tile);
+        });
+      });
+
+      return done();
+    });
+  },
+  function(done) {
+    tilelive.load(util.format("mapnik://./stylesheet.xml?metatile=%d&bufferSize=%d&tileSize=%d&scale=%d",
+                              METATILE,
+                              BUFFER_SIZE,
+                              TILE_SIZE,
+                              SCALE * 2), function(err, source) {
+      if (err) {
+        console.error(err);
+        process.exit(1);
+      }
+
+      // TODO not all tiles will be PNGs
+      // TODO this isn't strictly retina because 256x256 tiles are still being
+      // returned
+      app.get(/^\/(\d+)\/(\d+)\/(\d+)@2x\.png/, function(req, res) {
+        var z = +req.params[0],
+            x = +req.params[1],
+            y = +req.params[2];
+
+        source.getTile(z, x, y, function(err, tile, headers) {
+          if (err) {
+            console.warn(err);
+            return res.send(500);
+          }
+
+          res.set(headers);
+          res.send(tile);
+        });
+      });
+
+      return done();
+    });
+  }
+], function() {
   app.listen(process.env.PORT || 8080, function() {
     console.log("Listening at http://%s:%d/", this.address().address, this.address().port);
   });
