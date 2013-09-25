@@ -18,7 +18,8 @@
     "carto": "https://github.com/mapbox/carto/tarball/master",
     "millstone": "https://github.com/mapbox/millstone/tarball/master",
     "js-yaml": "~2.1.0",
-    "async": "~0.2.9"
+    "async": "~0.2.9",
+    "sphericalmercator": "~1.0.2"
   },
   "engines": {
     "node": "~0.10.15",
