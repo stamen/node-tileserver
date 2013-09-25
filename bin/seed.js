@@ -128,18 +128,11 @@ tilelive.load({
   }, http.globalAgent.maxSockets);
 
   var renderQueue = async.queue(function(task, callback) {
-    return source.getTile(task.z, task.x, task.y, function(err, tile, headers) {
-      headers["Cache-Control"] = "public,max-age=300";
-      headers["x-amz-acl"] = "public-read";
-
-      uploadQueue.push({
-        path: util.format("/%d/%d/%d.png", task.z, task.x, task.y),
-        tile: tile,
-        headers: headers
-      });
-
+    var done = function() {
       if (task.z < maxZoom) {
         // TODO when generating subtiles, attempt to cluster within metatiles
+        // this probably means generating a hash of keys that can be claimed
+        // / cleared
         setImmediate(function() {
           renderQueue.push(getSubtiles(task.z, task.x, task.y), function(err) {
             if (err) {
@@ -150,6 +143,39 @@ tilelive.load({
       }
 
       return callback();
+    };
+
+    var path = util.format("/%d/%d/%d.png", task.z, task.x, task.y);
+
+    request.head({
+      uri: util.format("http://%s.s3.amazonaws.com%s", S3_BUCKET, path),
+      aws: {
+        key: ACCESS_KEY_ID,
+        secret: SECRET_ACCESS_KEY,
+        bucket: S3_BUCKET
+      }
+    }, function(err, rsp, body) {
+      if (rsp && rsp.statusCode === 200) {
+        // tile already exists
+        console.log("skipping", path);
+        return done();
+      }
+
+      console.log("rendering", path);
+
+      return source.getTile(task.z, task.x, task.y, function(err, tile, headers) {
+        // TODO configurable max-age
+        headers["Cache-Control"] = "public,max-age=300";
+        headers["x-amz-acl"] = "public-read";
+
+        uploadQueue.push({
+          path: path,
+          tile: tile,
+          headers: headers
+        });
+
+        return done();
+      });
     });
   }, os.cpus().length * 2);
 
