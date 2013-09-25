@@ -2,6 +2,10 @@
   "name": "tileserver",
   "version": "0.3.0-dev",
   "private": true,
+  "bin": {
+    "seed": "./bin/seed.js",
+    "purge": "./bin/purge.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/stamen/node-tileserver.git"
@@ -20,7 +24,8 @@
     "js-yaml": "~2.1.0",
     "async": "~0.2.9",
     "sphericalmercator": "~1.0.2",
-    "optimist": "~0.6.0"
+    "optimist": "~0.6.0",
+    "knox": "~0.8.6"
   },
   "engines": {
     "node": "~0.10.15",
