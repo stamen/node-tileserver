@@ -150,7 +150,7 @@ tilelive.load({
         });
       }
 
-      return callback();
+      return callback.apply(null, arguments);
     };
 
     var path;
@@ -177,7 +177,13 @@ tilelive.load({
 
       console.log("rendering", path);
 
+      // TODO time
       return source.getTile(task.z, task.x, task.y, function(err, tile, headers) {
+        if (err) {
+          console.warn(err);
+          return done(err);
+        }
+
         // TODO configurable max-age
         headers["Cache-Control"] = "public,max-age=300";
         headers["x-amz-acl"] = "public-read";
