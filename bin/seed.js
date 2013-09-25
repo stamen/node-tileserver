@@ -31,6 +31,17 @@ var merc = new SphericalMercator({
   size: TILE_SIZE
 });
 
+var argv = require("optimist")
+    .usage("Usage: $0 -b=<bbox> -z <min zoom> -Z <max zoom>")
+    .alias("b", "bbox")
+    .describe("b", "Bounding box.")
+    .alias("z", "min-zoom")
+    .describe("z", "Min zoom (inclusive).")
+    .alias("Z", "max-zoom")
+    .describe("Z", "Max zoom (inclusive).")
+    .demand(["b", "z", "Z"])
+    .argv;
+
 var getTiles = function(zoom, range) {
   var tiles = [];
 
@@ -87,9 +98,11 @@ tilelive.load({
     throw err;
   }
 
-  var bbox = [-123.085, 37.289, -121.826, 38.266];
-  var zoom = 10;
-  var maxZoom = 18;
+  var bbox = argv.bbox.split(" ", 4);
+  var zoom = argv.z;
+  var maxZoom = argv.Z;
+
+  console.log("Rendering [%s] from z%d-%d", bbox.join(", "), zoom, maxZoom);
 
   var uploadQueue = async.queue(function(task, callback) {
     request.put({

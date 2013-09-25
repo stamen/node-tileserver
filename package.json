@@ -19,7 +19,8 @@
     "millstone": "https://github.com/mapbox/millstone/tarball/master",
     "js-yaml": "~2.1.0",
     "async": "~0.2.9",
-    "sphericalmercator": "~1.0.2"
+    "sphericalmercator": "~1.0.2",
+    "optimist": "~0.6.0"
   },
   "engines": {
     "node": "~0.10.15",
