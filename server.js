@@ -34,11 +34,17 @@ app.configure("development", function() {
 
 async.parallel([
   function(done) {
-    tilelive.load(util.format("mapnik://./stylesheet.xml?metatile=%d&bufferSize=%d&tileSize=%d&scale=%d",
-                              METATILE,
-                              BUFFER_SIZE,
-                              TILE_SIZE,
-                              SCALE), function(err, source) {
+    tilelive.load({
+      protocol: "mapnik:",
+      hostname: ".",
+      pathname: "/stylesheet.xml",
+      query: {
+        metatile: METATILE,
+        bufferSize: BUFFER_SIZE,
+        tileSize: TILE_SIZE,
+        scale: SCALE
+      }
+    }, function(err, source) {
       if (err) {
         console.error(err);
         process.exit(1);
@@ -61,15 +67,28 @@ async.parallel([
         });
       });
 
+      setInterval(function() {
+        // TODO use metricsd
+        Object.keys(source._stats).forEach(function(k) {
+          console.log("1x.%s: %d", k, source._stats[k]);
+        });
+      }, 30000);
+
       return done();
     });
   },
   function(done) {
-    tilelive.load(util.format("mapnik://./stylesheet.xml?metatile=%d&bufferSize=%d&tileSize=%d&scale=%d",
-                              METATILE,
-                              BUFFER_SIZE,
-                              TILE_SIZE,
-                              SCALE * 2), function(err, source) {
+    tilelive.load({
+      protocol: "mapnik:",
+      hostname: ".",
+      pathname: "/stylesheet.xml",
+      query: {
+        metatile: METATILE,
+        bufferSize: BUFFER_SIZE,
+        tileSize: TILE_SIZE * 2,
+        scale: SCALE * 2
+      }
+    }, function(err, source) {
       if (err) {
         console.error(err);
         process.exit(1);
@@ -93,6 +112,13 @@ async.parallel([
           res.send(tile);
         });
       });
+
+      setInterval(function() {
+        // TODO use metricsd
+        Object.keys(source._stats).forEach(function(k) {
+          console.log("2x.%s: %d", k, source._stats[k]);
+        });
+      }, 30000);
 
       return done();
     });
