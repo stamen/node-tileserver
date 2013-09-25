@@ -39,6 +39,8 @@ var argv = require("optimist")
     .describe("z", "Min zoom (inclusive).")
     .alias("Z", "max-zoom")
     .describe("Z", "Max zoom (inclusive).")
+    .alias("r", "retina")
+    .describe("r", "Render retina tiles.")
     .demand(["b", "z", "Z"])
     .argv;
 
@@ -82,6 +84,12 @@ var getSubtiles = function(z, x, y) {
     }
   ];
 };
+
+if (argv.retina) {
+  BUFFER_SIZE *= 2;
+  TILE_SIZE *= 2;
+  SCALE *= 2;
+}
 
 tilelive.load({
   protocol: "mapnik:",
@@ -145,7 +153,13 @@ tilelive.load({
       return callback();
     };
 
-    var path = util.format("/%d/%d/%d.png", task.z, task.x, task.y);
+    var path;
+
+    if (argv.retina) {
+      path = util.format("/%d/%d/%d@2x.png", task.z, task.x, task.y);
+    } else {
+      path = util.format("/%d/%d/%d.png", task.z, task.x, task.y);
+    }
 
     request.head({
       uri: util.format("http://%s.s3.amazonaws.com%s", S3_BUCKET, path),

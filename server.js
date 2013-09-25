@@ -84,7 +84,7 @@ async.parallel([
       pathname: "/stylesheet.xml",
       query: {
         metatile: METATILE,
-        bufferSize: BUFFER_SIZE,
+        bufferSize: BUFFER_SIZE * 2,
         tileSize: TILE_SIZE * 2,
         scale: SCALE * 2
       }
