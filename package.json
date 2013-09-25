@@ -16,7 +16,7 @@
     "request": "~2.25.0",
     "require-env": "0.0.3",
     "carto": "https://github.com/mapbox/carto/tarball/master",
-    "millstone": "https://github.com/mapbox/millstone/tarball/master",
+    "millstone": "~0.6.4",
     "js-yaml": "~2.1.0",
     "async": "~0.2.9",
     "sphericalmercator": "~1.0.2",
