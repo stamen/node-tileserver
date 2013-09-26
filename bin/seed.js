@@ -146,11 +146,13 @@ tilelive.load({
   var renderQueue = async.queue(function(task, callback) {
     var done = function() {
       if (task.z < maxZoom) {
-        // TODO when generating subtiles, attempt to cluster within metatiles
-        // this probably means generating a hash of keys that can be claimed
-        // / cleared
         setImmediate(function() {
-          renderQueue.push(getSubtiles(task.z, task.x, task.y), function(err) {
+          var subtiles = getSubtiles(task.z, task.x, task.y).filter(function(tile) {
+            return (tile.x % METATILE === 0 &&
+                    tile.y % METATILE === 0);
+          });
+
+          renderQueue.push(subtiles, function(err) {
             if (err) {
               console.error(err);
             }
