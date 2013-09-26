@@ -60,28 +60,36 @@ var getTiles = function(zoom, range) {
   return tiles;
 };
 
+var getMetaTiles = function(zoom, range) {
+  var tiles = [];
+
+  var minX = range.minX - (range.minX % METATILE),
+      maxX = range.maxX - (METATILE - (range.maxX % METATILE)),
+      minY = range.minY - (range.minY % METATILE),
+      maxY = range.maxY - (METATILE - (range.maxY % METATILE));
+
+  for (var x = minX; x <= maxX; x++) {
+    for (var y = maxY; y >= minY; y--) {
+      if (x % METATILE === 0 &&
+          y % METATILE === 0) {
+        tiles.push({
+          z: zoom,
+          x: x,
+          y: y
+        });
+      }
+    }
+  }
+
+  return tiles;
+};
+
 var getSubtiles = function(z, x, y) {
   return [
-    {
-      z: z + 1,
-      x: x * 2,
-      y: y * 2
-    },
-    {
-      z: z + 1,
-      x: x * 2 + 1,
-      y: y * 2
-    },
-    {
-      z: z + 1,
-      x: x * 2,
-      y: y * 2 + 1
-    },
-    {
-      z: z + 1,
-      x: x * 2 + 1,
-      y: y * 2 + 1
-    }
+    { z: z + 1, x: x * 2, y: y * 2 },
+    { z: z + 1, x: x * 2 + 1, y: y * 2 },
+    { z: z + 1, x: x * 2, y: y * 2 + 1 },
+    { z: z + 1, x: x * 2 + 1, y: y * 2 + 1 }
   ];
 };
 
@@ -153,50 +161,59 @@ tilelive.load({
       return callback.apply(null, arguments);
     };
 
-    var path;
+    var tiles = [
+      { z: zoom, x: task.x, y: task.y },
+      { z: zoom, x: task.x, y: task.y + 1 },
+      { z: zoom, x: task.x + 1, y: task.y },
+      { z: zoom, x: task.x + 1, y: task.y + 1}
+    ];
 
-    if (argv.retina) {
-      path = util.format("/%d/%d/%d@2x.png", task.z, task.x, task.y);
-    } else {
-      path = util.format("/%d/%d/%d.png", task.z, task.x, task.y);
-    }
+    async.each(tiles, function(tile, done) {
+      var path;
 
-    request.head({
-      uri: util.format("http://%s.s3.amazonaws.com%s", S3_BUCKET, path),
-      aws: {
-        key: ACCESS_KEY_ID,
-        secret: SECRET_ACCESS_KEY,
-        bucket: S3_BUCKET
-      }
-    }, function(err, rsp, body) {
-      if (rsp && rsp.statusCode === 200) {
-        // tile already exists
-        console.log("skipping", path);
-        return done();
+      if (argv.retina) {
+        path = util.format("/%d/%d/%d@2x.png", tile.z, tile.x, tile.y);
+      } else {
+        path = util.format("/%d/%d/%d.png", tile.z, tile.x, tile.y);
       }
 
-      console.log("rendering", path);
-
-      // TODO time
-      return source.getTile(task.z, task.x, task.y, function(err, tile, headers) {
-        if (err) {
-          console.warn(err);
-          return done(err);
+      request.head({
+        uri: util.format("http://%s.s3.amazonaws.com%s", S3_BUCKET, path),
+        aws: {
+          key: ACCESS_KEY_ID,
+          secret: SECRET_ACCESS_KEY,
+          bucket: S3_BUCKET
+        }
+      }, function(err, rsp, body) {
+        if (rsp && rsp.statusCode === 200) {
+          // tile already exists
+          console.log("skipping", path);
+          return done();
         }
 
-        // TODO configurable max-age
-        headers["Cache-Control"] = "public,max-age=300";
-        headers["x-amz-acl"] = "public-read";
+        console.log("rendering", path);
 
-        uploadQueue.push({
-          path: path,
-          tile: tile,
-          headers: headers
+        // TODO time
+        return source.getTile(tile.z, tile.x, tile.y, function(err, data, headers) {
+          if (err) {
+            console.warn(err);
+            return done(err);
+          }
+
+          // TODO configurable max-age
+          headers["Cache-Control"] = "public,max-age=300";
+          headers["x-amz-acl"] = "public-read";
+
+          uploadQueue.push({
+            path: path,
+            tile: data,
+            headers: headers
+          });
+
+          return done();
         });
-
-        return done();
       });
-    });
+    }, done);
   }, os.cpus().length * 2);
 
   setInterval(function() {
@@ -225,8 +242,7 @@ tilelive.load({
     }
   }, 15000);
 
-  // TODO when generating tile coordinates, attempt to cluster within metatiles
-  getTiles(zoom, merc.xyz(bbox, zoom)).forEach(function(tile) {
+  getMetaTiles(zoom, merc.xyz(bbox, zoom)).forEach(function(tile) {
     renderQueue.push(tile, function(err) {
       if (err) {
         console.error(err);
