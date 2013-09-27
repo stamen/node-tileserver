@@ -164,10 +164,10 @@ tilelive.load({
     };
 
     var tiles = [
-      { z: zoom, x: task.x, y: task.y },
-      { z: zoom, x: task.x, y: task.y + 1 },
-      { z: zoom, x: task.x + 1, y: task.y },
-      { z: zoom, x: task.x + 1, y: task.y + 1}
+      { z: task.z, x: task.x, y: task.y },
+      { z: task.z, x: task.x, y: task.y + 1 },
+      { z: task.z, x: task.x + 1, y: task.y },
+      { z: task.z, x: task.x + 1, y: task.y + 1}
     ];
 
     async.each(tiles, function(tile, done) {
