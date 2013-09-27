@@ -17,7 +17,10 @@ body, #map {
 <body>
 <div id="map"></div>
 <script>
-  var map = L.map('map');
+  var map = L.map('map', {
+      scrollWheelZoom: false,
+      attributionControl: false
+  });
 
   if (!location.hash) {
     // provide a default location in the hash, not the L.map (since that will
@@ -28,8 +31,7 @@ body, #map {
   new L.Hash(map);
 
   var options = {
-    maxZoom: 20, // TODO load this (and minZoom) from project.mml if available
-    attribution: ""
+    maxZoom: 20 // TODO load this (and minZoom) from project.mml if available
   }
   var provider = "/{z}/{x}/{y}.png";
 
