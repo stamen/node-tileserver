@@ -124,7 +124,9 @@ async.parallel([
     });
   }
 ], function() {
-  app.listen(process.env.PORT || 8080, function() {
-    console.log("Listening at http://%s:%d/", this.address().address, this.address().port);
-  });
+  console.log("Mapnik initialized.");
+});
+
+app.listen(process.env.PORT || 8080, function() {
+  console.log("Listening at http://%s:%d/", this.address().address, this.address().port);
 });
