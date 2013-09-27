@@ -29,8 +29,8 @@ app.configure("development", function() {
   app.use(express.logger());
 });
 
-// TODO templatize index.html to center on the right location and use correct
-// tile size / zoom offsets
+// TODO templatize index.html to center on the right location and constrain
+// zoom levels appropriately
 
 async.parallel([
   function(done) {
@@ -95,8 +95,6 @@ async.parallel([
       }
 
       // TODO not all tiles will be PNGs
-      // TODO this isn't strictly retina because 256x256 tiles are still being
-      // returned
       app.get(/^\/(\d+)\/(\d+)\/(\d+)@2x\.png/, function(req, res) {
         var z = +req.params[0],
             x = +req.params[1],
