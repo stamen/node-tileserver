@@ -159,8 +159,6 @@ tilelive.load({
           });
         });
       }
-
-      return callback.apply(null, arguments);
     };
 
     var tiles = [
@@ -223,7 +221,7 @@ tilelive.load({
           return done();
         });
       });
-    });
+    }, callback);
   }, os.cpus().length * 2);
 
   setInterval(function() {
