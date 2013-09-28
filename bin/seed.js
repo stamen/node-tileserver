@@ -223,7 +223,7 @@ tilelive.load({
           return done();
         });
       });
-    }, done);
+    });
   }, os.cpus().length * 2);
 
   setInterval(function() {
