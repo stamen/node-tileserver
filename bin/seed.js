@@ -144,12 +144,12 @@ tilelive.load({
   }, http.globalAgent.maxSockets);
 
   var renderQueue = async.queue(function(task, callback) {
-    var done = function() {
-      if (task.z < maxZoom) {
+    var done = function(err, tile) {
+      if (tile.z < maxZoom) {
         setImmediate(function() {
-          var subtiles = getSubtiles(task.z, task.x, task.y).filter(function(tile) {
-            return (tile.x % METATILE === 0 &&
-                    tile.y % METATILE === 0);
+          var subtiles = getSubtiles(tile.z, tile.x, tile.y).filter(function(t) {
+            return (t.x % METATILE === 0 &&
+                    t.y % METATILE === 0);
           });
 
           renderQueue.push(subtiles, function(err) {
@@ -199,7 +199,7 @@ tilelive.load({
         return source.getTile(tile.z, tile.x, tile.y, function(err, data, headers) {
           if (err) {
             console.warn(err);
-            return done(err);
+            return done(err, tile);
           }
 
           // TODO configurable max-age
@@ -212,7 +212,7 @@ tilelive.load({
             headers: headers
           });
 
-          return done();
+          return done(null, tile);
         });
       });
     }, done);
