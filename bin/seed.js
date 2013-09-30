@@ -4,11 +4,11 @@
 
 var http = require("http"),
     os = require("os"),
-    url = require("url"),
     util = require("util");
 
 var async = require("async"),
     env = require("require-env"),
+    kue = require("kue"),
     request = require("request"),
     SphericalMercator = require("sphericalmercator"),
     tilelive = require("tilelive"),
@@ -250,11 +250,15 @@ tilelive.load({
     }
   }, 15000);
 
+  var jobs = kue.createQueue();
+
   getMetaTiles(zoom, merc.xyz(bbox, zoom)).forEach(function(tile) {
-    renderQueue.push(tile, function(err) {
-      if (err) {
-        console.error(err);
-      }
-    });
+    tile.title = util.format("%d/%d/%d.png", tile.z, tile.x, tile.y);
+    jobs.create("render", tile).priority(0).save();
+    // renderQueue.push(tile, function(err) {
+    //   if (err) {
+    //     console.error(err);
+    //   }
+    // });
   });
 });
