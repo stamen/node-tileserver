@@ -25,7 +25,8 @@
     "async": "~0.2.9",
     "sphericalmercator": "~1.0.2",
     "optimist": "~0.6.0",
-    "knox": "~0.8.6"
+    "knox": "~0.8.6",
+    "kue": "~0.6.2"
   },
   "engines": {
     "node": "~0.10.15"
