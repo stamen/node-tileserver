@@ -5,7 +5,8 @@
   "bin": {
     "seed": "./bin/seed.js",
     "purge": "./bin/purge.js",
-    "tileserver": "./bin/tileserver.js"
+    "tileserver": "./bin/tileserver.js",
+    "jsonify": "./bin/jsonify.js"
   },
   "repository": {
     "type": "git",
