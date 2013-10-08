@@ -33,7 +33,7 @@ body, #map {
   var options = {
     maxZoom: 20 // TODO load this (and minZoom) from project.mml if available
   }
-  var provider = "/{z}/{x}/{y}.png";
+  var provider = "{z}/{x}/{y}.png";
 
   var mediaQuery = "(-webkit-min-device-pixel-ratio: 1.5),\
                     (min--moz-device-pixel-ratio: 1.5),\
@@ -41,7 +41,7 @@ body, #map {
                     (min-resolution: 1.5dppx)";
   if (window.devicePixelRatio > 1 ||
       (window.matchMedia && window.matchMedia(mediaQuery).matches)) {
-    provider = "/{z}/{x}/{y}@2x.png";
+    provider = "{z}/{x}/{y}@2x.png";
     options.tileSize = 512;
     options.zoomOffset = -1;
   }
