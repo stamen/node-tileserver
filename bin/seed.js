@@ -2,33 +2,16 @@
 
 "use strict";
 
-var http = require("http"),
-    os = require("os"),
-    util = require("util");
+var util = require("util");
 
 var async = require("async"),
-    env = require("require-env"),
     kue = require("kue"),
-    request = require("request"),
-    SphericalMercator = require("sphericalmercator"),
-    tilelive = require("tilelive"),
-    tileliveMapnik = require("tilelive-mapnik");
+    SphericalMercator = require("sphericalmercator");
 
-tileliveMapnik.registerProtocols(tilelive);
-
-http.globalAgent.maxSockets = 200;
-
-var SCALE = process.env.SCALE || 1,
-    METATILE = process.env.METATILE || 4,
-    BUFFER_SIZE = process.env.BUFFER_SIZE || 128,
-    TILE_SIZE = process.env.TILE_SIZE || 256;
-
-var ACCESS_KEY_ID = env.require("AWS_ACCESS_KEY_ID"),
-    SECRET_ACCESS_KEY = env.require("AWS_SECRET_ACCESS_KEY"),
-    S3_BUCKET = env.require("S3_BUCKET");
+var METATILE = +process.env.METATILE || 4;
 
 var merc = new SphericalMercator({
-  size: TILE_SIZE
+  size: process.env.TILE_SIZE || 256
 });
 
 var argv = require("optimist")
@@ -43,22 +26,6 @@ var argv = require("optimist")
     .describe("r", "Render retina tiles.")
     .demand(["b", "z", "Z"])
     .argv;
-
-var getTiles = function(zoom, range) {
-  var tiles = [];
-
-  for (var x = range.minX; x <= range.maxX; x++) {
-    for (var y = range.maxY; y >= range.minY; y--) {
-      tiles.push({
-        z: zoom,
-        x: x,
-        y: y
-      });
-    }
-  }
-
-  return tiles;
-};
 
 var getMetaTiles = function(zoom, range) {
   var tiles = [];
@@ -84,181 +51,30 @@ var getMetaTiles = function(zoom, range) {
   return tiles;
 };
 
-var getSubtiles = function(z, x, y) {
-  return [
-    { z: z + 1, x: x * 2, y: y * 2 },
-    { z: z + 1, x: x * 2 + 1, y: y * 2 },
-    { z: z + 1, x: x * 2, y: y * 2 + 1 },
-    { z: z + 1, x: x * 2 + 1, y: y * 2 + 1 }
-  ];
-};
+var bbox = argv.bbox.split(" ", 4).map(Number);
+var zoom = argv.z;
+var maxZoom = argv.Z;
 
-if (argv.retina) {
-  BUFFER_SIZE *= 2;
-  TILE_SIZE *= 2;
-  SCALE *= 2;
-}
+console.log("Rendering [%s] from z%d-%d", bbox.join(", "), zoom, maxZoom);
 
-tilelive.load({
-  protocol: "mapnik:",
-  hostname: ".",
-  pathname: "/stylesheet.xml",
-  query: {
-    metatile: METATILE,
-    bufferSize: BUFFER_SIZE,
-    tileSize: TILE_SIZE,
-    scale: SCALE
-  }
-}, function(err, source) {
-  if (err) {
-    throw err;
+var jobs = kue.createQueue();
+
+async.each(getMetaTiles(zoom, merc.xyz(bbox, zoom)), function(tile, done) {
+  var path;
+
+  if (argv.retina) {
+    path = util.format("/%d/%d/%d@2x.png", tile.z, tile.x, tile.y);
+  } else {
+    path = util.format("/%d/%d/%d.png", tile.z, tile.x, tile.y);
   }
 
-  var bbox = argv.bbox.split(" ", 4);
-  var zoom = argv.z;
-  var maxZoom = argv.Z;
+  tile.title = path;
+  tile.bbox = bbox;
+  tile.maxZoom = maxZoom;
+  tile.retina = !!argv.retina;
+  tile.metaTile = METATILE;
 
-  console.log("Rendering [%s] from z%d-%d", bbox.join(", "), zoom, maxZoom);
-
-  var uploadQueue = async.queue(function(task, callback) {
-    request.put({
-      uri: util.format("http://%s.s3.amazonaws.com%s", S3_BUCKET, task.path),
-      aws: {
-        key: ACCESS_KEY_ID,
-        secret: SECRET_ACCESS_KEY,
-        bucket: S3_BUCKET
-      },
-      body: task.tile,
-      headers: task.headers
-    }, function(err, response, body) {
-      if (err) {
-        return callback(err);
-      }
-
-      if (response.statusCode === 200) {
-        return callback();
-      } else {
-        return callback(new Error(util.format("%d: %s", response.statusCode, body)));
-      }
-    });
-  }, http.globalAgent.maxSockets);
-
-  var renderQueue = async.queue(function(task, callback) {
-    var queueSubtiles = function(tile) {
-      if (tile.z < maxZoom) {
-        setImmediate(function() {
-          var subtiles = getSubtiles(tile.z, tile.x, tile.y).filter(function(t) {
-            return (t.x % METATILE === 0 &&
-                    t.y % METATILE === 0);
-          });
-
-          renderQueue.push(subtiles, function(err) {
-            if (err) {
-              console.error(err);
-            }
-          });
-        });
-      }
-    };
-
-    var tiles = [
-      { z: task.z, x: task.x, y: task.y },
-      { z: task.z, x: task.x, y: task.y + 1 },
-      { z: task.z, x: task.x + 1, y: task.y },
-      { z: task.z, x: task.x + 1, y: task.y + 1}
-    ];
-
-    async.each(tiles, function(tile, done) {
-      var path;
-
-      if (argv.retina) {
-        path = util.format("/%d/%d/%d@2x.png", tile.z, tile.x, tile.y);
-      } else {
-        path = util.format("/%d/%d/%d.png", tile.z, tile.x, tile.y);
-      }
-
-      request.head({
-        uri: util.format("http://%s.s3.amazonaws.com%s", S3_BUCKET, path),
-        aws: {
-          key: ACCESS_KEY_ID,
-          secret: SECRET_ACCESS_KEY,
-          bucket: S3_BUCKET
-        }
-      }, function(err, rsp, body) {
-        if (rsp && rsp.statusCode === 200) {
-          // tile already exists
-          console.log("skipping", path);
-
-          queueSubtiles(tile);
-
-          return done();
-        }
-
-        console.log("rendering", path);
-
-        // TODO time
-        return source.getTile(tile.z, tile.x, tile.y, function(err, data, headers) {
-          if (err) {
-            console.warn(err);
-
-            queueSubtiles(tile);
-
-            return done(err);
-          }
-
-          // TODO configurable max-age
-          headers["Cache-Control"] = "public,max-age=300";
-          headers["x-amz-acl"] = "public-read";
-
-          uploadQueue.push({
-            path: path,
-            tile: data,
-            headers: headers
-          });
-
-          queueSubtiles(tile);
-
-          return done();
-        });
-      });
-    }, callback);
-  }, os.cpus().length * 2);
-
-  setInterval(function() {
-    console.log("render queue: %d/%d", renderQueue.running(), renderQueue.length());
-    console.log("upload queue: %d/%d", uploadQueue.running(), uploadQueue.length());
-
-    var renderHead = renderQueue.tasks[0];
-    if (renderHead) {
-      console.log(renderHead.data);
-    }
-
-    var uploadHead = uploadQueue.tasks[0];
-    if (uploadHead) {
-      console.log(uploadHead.data.path);
-    }
-
-    Object.keys(source._stats).forEach(function(k) {
-      console.log("%s: %d", k, source._stats[k]);
-    });
-
-    if (renderQueue.length() === 0 &&
-        renderQueue.running() === 0 &&
-        uploadQueue.length() === 0 &&
-        uploadQueue.running() === 0) {
-      process.exit();
-    }
-  }, 15000);
-
-  var jobs = kue.createQueue();
-
-  getMetaTiles(zoom, merc.xyz(bbox, zoom)).forEach(function(tile) {
-    tile.title = util.format("%d/%d/%d.png", tile.z, tile.x, tile.y);
-    jobs.create("render", tile).priority(0).save();
-    // renderQueue.push(tile, function(err) {
-    //   if (err) {
-    //     console.error(err);
-    //   }
-    // });
-  });
+  jobs.create("render", tile).priority(0).save(done);
+}, function() {
+  process.exit();
 });

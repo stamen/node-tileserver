@@ -19,7 +19,6 @@ tileliveMapnik.registerProtocols(tilelive);
 http.globalAgent.maxSockets = 200;
 
 var SCALE = process.env.SCALE || 1,
-    METATILE = process.env.METATILE || 4,
     BUFFER_SIZE = process.env.BUFFER_SIZE || 128,
     TILE_SIZE = process.env.TILE_SIZE || 256;
 
@@ -31,29 +30,7 @@ var merc = new SphericalMercator({
   size: TILE_SIZE
 });
 
-var getMetaTiles = function(zoom, range) {
-  var tiles = [];
-
-  var minX = range.minX - (range.minX % METATILE),
-      maxX = range.maxX - (METATILE - (range.maxX % METATILE)),
-      minY = range.minY - (range.minY % METATILE),
-      maxY = range.maxY - (METATILE - (range.maxY % METATILE));
-
-  for (var x = minX; x <= maxX; x++) {
-    for (var y = maxY; y >= minY; y--) {
-      if (x % METATILE === 0 &&
-          y % METATILE === 0) {
-        tiles.push({
-          z: zoom,
-          x: x,
-          y: y
-        });
-      }
-    }
-  }
-
-  return tiles;
-};
+var jobs = kue.createQueue();
 
 var getSubtiles = function(z, x, y) {
   return [
@@ -64,59 +41,115 @@ var getSubtiles = function(z, x, y) {
   ];
 };
 
-var argv = {};
+var queueSubtiles = function(jobs, task, tile) {
+  if (tile.z < task.maxZoom) {
+    var subtiles = getSubtiles(tile.z, tile.x, tile.y).filter(function(t) {
+      return (t.x % task.metaTile === 0 &&
+              t.y % task.metaTile === 0);
+    });
 
-tilelive.load({
-  protocol: "mapnik:",
-  hostname: ".",
-  pathname: "/stylesheet.xml",
-  query: {
-    metatile: METATILE,
-    bufferSize: BUFFER_SIZE,
-    tileSize: TILE_SIZE,
-    scale: SCALE
-  }
-}, function(err, source) {
-  if (err) {
-    throw err;
-  }
-
-  var jobs = kue.createQueue();
-
-  // TODO pack maxZoom into the payload
-  // TODO pack retina into the payload
-  // TODO pay bbox into the payload
-  var maxZoom = 14;
-
-  jobs.process("render", function(job, callback) {
-    var queueSubtiles = function(tile) {
-      if (tile.z < maxZoom) {
-        var subtiles = getSubtiles(tile.z, tile.x, tile.y).filter(function(t) {
-          return (t.x % METATILE === 0 &&
-                  t.y % METATILE === 0);
-        });
-
-        subtiles.forEach(function(x) {
-          x.title = util.format("/%d/%d/%d.png", x.z, x.x, x.y);
-          jobs.create("render", x).priority(x.z).save();
-        });
-      }
-    };
-
-    var task = job.data;
-
-    // TODO this is dependent on METATILE (2x2 = METATILE = 2)
-    var tiles = [
-      { z: task.z, x: task.x, y: task.y },
-      { z: task.z, x: task.x, y: task.y + 1 },
-      { z: task.z, x: task.x + 1, y: task.y },
-      { z: task.z, x: task.x + 1, y: task.y + 1}
-    ];
-
-    async.each(tiles, function(tile, done) {
+    subtiles.forEach(function(x) {
       var path;
 
-      if (argv.retina) {
+      if (task.retina) {
+        path = util.format("/%d/%d/%d@2x.png", x.z, x.x, x.y);
+      } else {
+        path = util.format("/%d/%d/%d.png", x.z, x.x, x.y);
+      }
+
+      x.title = path;
+      x.retina = task.retina;
+      x.maxZoom = task.maxZoom;
+      x.bbox = task.bbox;
+      x.metaTile = task.metaTile;
+
+      jobs.create("render", x).priority(x.z).save();
+    });
+  }
+};
+
+var upload = function(path, headers, body, callback) {
+  return request.put({
+    // TODO prefix
+    uri: util.format("http://%s.s3.amazonaws.com%s", S3_BUCKET, path),
+    aws: {
+      key: ACCESS_KEY_ID,
+      secret: SECRET_ACCESS_KEY,
+      bucket: S3_BUCKET
+    },
+    headers: headers,
+    body: body
+  }, function(err, response, body) {
+    if (err) {
+      return callback(err);
+    }
+
+    if (response.statusCode === 200) {
+      return callback();
+    } else {
+      return callback(new Error(util.format("%d: %s", response.statusCode, body)));
+    }
+  });
+};
+
+
+jobs.process("render", os.cpus().length * 4, function(job, callback) {
+  var task = job.data;
+
+  var tiles = [];
+
+  for (var x = task.x; x < task.x + task.metaTile; x++) {
+    for (var y = task.y; y < task.y + task.metaTile; y++) {
+      tiles.push({ z: task.z, x: x, y: y });
+    }
+  }
+
+  // validate coords against bounds
+  var xyz = merc.xyz(task.bbox, task.z);
+
+  tiles = tiles.filter(function(t) {
+    return t.x >= xyz.minX &&
+            t.x <= xyz.maxX &&
+            t.y >= xyz.minY &&
+            t.y >= xyz.maxY;
+  });
+
+  var scale = SCALE,
+      bufferSize = BUFFER_SIZE,
+      tileSize = TILE_SIZE;
+
+  if (task.retina) {
+    scale *= 2;
+    bufferSize *= 2;
+    tileSize *= 2;
+  }
+
+  // assume tilelive caches sources; these will probably all be the same, but
+  // if retina seeding is mixed with standard-def, scale will vary
+  // in theory, setting scale at render-time will set the option on the pooled
+  // map object and allow the stylesheet to only be loaded once
+  // MapnikSource._createPool uses the options that it's initialized with
+  // (potentially deferred), so that won't work with the current implementation
+  return tilelive.load({
+    protocol: "mapnik:",
+    hostname: ".",
+    pathname: "/stylesheet.xml",
+    query: {
+      metatile: task.metaTile,
+      bufferSize: bufferSize,
+      tileSize: tileSize,
+      scale: scale
+    }
+  }, function(err, source) {
+    if (err) {
+      console.warn("load:", err);
+      return callback(err);
+    }
+
+    return async.each(tiles, function(tile, done) {
+      var path;
+
+      if (task.retina) {
         path = util.format("/%d/%d/%d@2x.png", tile.z, tile.x, tile.y);
       } else {
         path = util.format("/%d/%d/%d.png", tile.z, tile.x, tile.y);
@@ -126,11 +159,14 @@ tilelive.load({
 
       // TODO time
       return source.getTile(tile.z, tile.x, tile.y, function(err, data, headers) {
+        if (data.length > 334) {
+          console.log(path);
+        }
+
+        queueSubtiles(jobs, task, tile);
+
         if (err) {
-          console.warn(err);
-
-          queueSubtiles(tile);
-
+          console.warn("render:", err);
           return done(err);
         }
 
@@ -138,39 +174,16 @@ tilelive.load({
         headers["Cache-Control"] = "public,max-age=300";
         headers["x-amz-acl"] = "public-read";
 
-        // uploadQueue.push({
-        //   path: path,
-        //   tile: data,
-        //   headers: headers
-        // });
+        // TODO if image was solid (and transparent), register an S3 redirect
+        // instead of uploading:
+        // http://stackoverflow.com/questions/2272835/amazon-s3-object-redirect
+        // tilelive-mapnik does not currently expose whether that's the case,
+        // although it knows:
+        // https://github.com/mapbox/tilelive-mapnik/blob/master/lib/render.js#L91
 
-        queueSubtiles(tile);
-
-        return done();
+        // TODO retry failed uploads
+        return upload(path, headers, data, done);
       });
     }, callback);
-  }, os.cpus().length * 4);
-
-  var uploadQueue = async.queue(function(task, callback) {
-    request.put({
-      uri: util.format("http://%s.s3.amazonaws.com%s", S3_BUCKET, task.path),
-      aws: {
-        key: ACCESS_KEY_ID,
-        secret: SECRET_ACCESS_KEY,
-        bucket: S3_BUCKET
-      },
-      body: task.tile,
-      headers: task.headers
-    }, function(err, response, body) {
-      if (err) {
-        return callback(err);
-      }
-
-      if (response.statusCode === 200) {
-        return callback();
-      } else {
-        return callback(new Error(util.format("%d: %s", response.statusCode, body)));
-      }
-    });
-  }, http.globalAgent.maxSockets);
+  });
 });
