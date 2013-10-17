@@ -7,7 +7,6 @@ var path = require("path"),
 var async = require("async"),
     cors = require("cors"),
     express = require("express"),
-    kue = require("kue"),
     metricsd = require("metricsd"),
     SphericalMercator = require("sphericalmercator"),
     tilelive = require("tilelive"),
@@ -34,7 +33,8 @@ app.configure(function() {
   app.use(express.responseTime());
   app.use(cors());
   app.use(express.static(__dirname + "/../public"));
-  app.use("/_/queue", kue.app);
+  // TODO wrap a flag around this
+  // app.use("/_/queue", require("kue").app);
 });
 
 app.configure("development", function() {
