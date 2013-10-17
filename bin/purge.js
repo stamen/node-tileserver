@@ -13,11 +13,16 @@ var client = knox.createClient({
 });
 
 var count,
-    deletedKeyCount = 0;
+    deletedKeyCount = 0,
+    marker;
 
 async.doWhilst(
   function(next) {
-    return client.list(function(err, data) {
+    // TODO needs prefix support
+    return client.list({
+      // delimiter: "/",
+      marker: marker || ""
+    }, function(err, data) {
       if (err) {
         return next(err);
       }
@@ -27,8 +32,10 @@ async.doWhilst(
       });
 
       count = keys.length;
+      marker = data.Marker;
 
       return client.deleteMultiple(keys, function(err) {
+        process.stdout.write(".");
         deletedKeyCount += keys.length;
 
         return next(err);
@@ -44,3 +51,6 @@ async.doWhilst(
     console.log("Deleted %d keys.", deletedKeyCount);
   });
 
+setInterval(function() {
+  console.log("Deleted %d keys.", deletedKeyCount);
+}, 10000).unref();
