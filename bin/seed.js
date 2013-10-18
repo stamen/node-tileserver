@@ -10,7 +10,8 @@ var async = require("async"),
     SphericalMercator = require("sphericalmercator");
 
 var METATILE = +process.env.METATILE || 4,
-    STYLE_NAME = env.require("STYLE_NAME");
+    STYLE_NAME = env.require("STYLE_NAME"),
+    DEBUG = !!process.env.DEBUG;
 
 var merc = new SphericalMercator({
   size: process.env.TILE_SIZE || 256
