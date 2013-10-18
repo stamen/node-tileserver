@@ -76,6 +76,10 @@ async.each(getMetaTiles(zoom, merc.xyz(bbox, zoom)), function(tile, done) {
   tile.retina = !!argv.retina;
   tile.metaTile = METATILE;
 
+  if (DEBUG) {
+    console.log("Queueing %s as %j", STYLE_NAME, tile);
+  }
+
   jobs
     .create("render-" + STYLE_NAME, tile)
     .priority(0)
