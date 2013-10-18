@@ -33,8 +33,10 @@ app.configure(function() {
   app.use(express.responseTime());
   app.use(cors());
   app.use(express.static(__dirname + "/../public"));
-  // TODO wrap a flag around this
-  // app.use("/_/queue", require("kue").app);
+
+  if (!!process.env.ENABLE_KUE_APP) {
+    app.use("/_/queue", require("kue").app);
+  }
 });
 
 app.configure("development", function() {
