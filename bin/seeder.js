@@ -8,7 +8,7 @@ var http = require("http"),
 
 var async = require("async"),
     env = require("require-env"),
-    kue = require("kue"),
+    kue = require("../lib/kue"),
     request = require("request"),
     SphericalMercator = require("sphericalmercator"),
     tilelive = require("tilelive"),

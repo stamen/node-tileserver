@@ -5,7 +5,7 @@
 var util = require("util");
 
 var async = require("async"),
-    kue = require("kue"),
+    kue = require("../lib/kue"),
     SphericalMercator = require("sphericalmercator");
 
 var METATILE = +process.env.METATILE || 4;
