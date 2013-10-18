@@ -5,10 +5,12 @@
 var util = require("util");
 
 var async = require("async"),
+    env = require("require-env"),
     kue = require("../lib/kue"),
     SphericalMercator = require("sphericalmercator");
 
-var METATILE = +process.env.METATILE || 4;
+var METATILE = +process.env.METATILE || 4,
+    STYLE_NAME = env.require("STYLE_NAME");
 
 var merc = new SphericalMercator({
   size: process.env.TILE_SIZE || 256
@@ -74,7 +76,11 @@ async.each(getMetaTiles(zoom, merc.xyz(bbox, zoom)), function(tile, done) {
   tile.retina = !!argv.retina;
   tile.metaTile = METATILE;
 
-  jobs.create("render", tile).priority(0).save(done);
+  jobs
+    .create("render-" + STYLE_NAME, tile)
+    .priority(0)
+    .attempts(5)
+    .save(done);
 }, function() {
   process.exit();
 });

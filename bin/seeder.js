@@ -26,12 +26,12 @@ var metrics = metricsd({
 
 var SCALE = process.env.SCALE || 1,
     BUFFER_SIZE = process.env.BUFFER_SIZE || 128,
-    TILE_SIZE = process.env.TILE_SIZE || 256;
-
-var ACCESS_KEY_ID = env.require("AWS_ACCESS_KEY_ID"),
+    TILE_SIZE = process.env.TILE_SIZE || 256,
+    ACCESS_KEY_ID = env.require("AWS_ACCESS_KEY_ID"),
     SECRET_ACCESS_KEY = env.require("AWS_SECRET_ACCESS_KEY"),
     S3_BUCKET = env.require("S3_BUCKET"),
-    PATH_PREFIX = process.env.PATH_PREFIX || "";
+    PATH_PREFIX = process.env.PATH_PREFIX || "",
+    STYLE_NAME = env.require("STYLE_NAME");
 
 // add a leading slash if necessary
 if (PATH_PREFIX && PATH_PREFIX.indexOf("/") !== 0) {
@@ -73,7 +73,11 @@ var queueSubtiles = function(jobs, task, tile) {
       x.bbox = task.bbox;
       x.metaTile = task.metaTile;
 
-      jobs.create("render", x).priority(x.z).save();
+      jobs
+        .create("render", x)
+        .priority(x.z)
+        .attempts(5)
+        .save();
     });
   }
 };
@@ -125,7 +129,7 @@ var upload = function(path, headers, body, callback) {
 
 var jobs = kue.createQueue();
 
-jobs.process("render", os.cpus().length * 4, function(job, callback) {
+jobs.process("render-" + STYLE_NAME, os.cpus().length * 4, function(job, callback) {
   var task = job.data;
 
   var tiles = [];
