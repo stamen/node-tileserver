@@ -37,8 +37,6 @@ var merc = new SphericalMercator({
   size: TILE_SIZE
 });
 
-var jobs = kue.createQueue();
-
 var getSubtiles = function(z, x, y) {
   return [
     { z: z + 1, x: x * 2, y: y * 2 },
@@ -119,6 +117,8 @@ var upload = function(path, headers, body, callback) {
   });
 };
 
+
+var jobs = kue.createQueue();
 
 jobs.process("render", os.cpus().length * 4, function(job, callback) {
   var task = job.data;
