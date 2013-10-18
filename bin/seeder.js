@@ -225,22 +225,22 @@ if (!process.env.DYNO || process.env.DYNO === "worker.1") {
     console.log("=========================");
 
     jobs.inactiveCount(function(count) {
-      metrics.updateGauge("jobs.queued", count);
+      metrics.updateGauge("jobs.queued", count || 0);
       console.log("%d queued jobs", count);
     });
 
     jobs.activeCount(function(count) {
-      metrics.updateGauge("jobs.active", count);
+      metrics.updateGauge("jobs.active", count || 0);
       console.log("%d active jobs", count);
     });
 
     jobs.failedCount(function(count) {
-      metrics.updateGauge("jobs.failed", count);
+      metrics.updateGauge("jobs.failed", count || 0);
       console.log("%d failed jobs", count);
     });
 
     jobs.completeCount(function(count) {
-      metrics.updateGauge("jobs.complete", count);
+      metrics.updateGauge("jobs.complete", count || 0);
       console.log("%d completed jobs", count);
     });
 
