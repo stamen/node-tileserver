@@ -11,6 +11,7 @@ var async = require("async"),
     kue = require("../lib/kue"),
     metricsd = require("metricsd"),
     request = require("request"),
+    retry = require("retry"),
     SphericalMercator = require("sphericalmercator"),
     tilelive = require("tilelive"),
     tileliveMapnik = require("tilelive-mapnik");
@@ -74,28 +75,47 @@ var queueSubtiles = function(jobs, task, tile) {
   }
 };
 
-var upload = function(path, headers, body, callback) {
-  return request.put({
-    // TODO prefix
-    uri: util.format("http://%s.s3.amazonaws.com%s%s", S3_BUCKET, PATH_PREFIX, path),
-    aws: {
-      key: ACCESS_KEY_ID,
-      secret: SECRET_ACCESS_KEY,
-      bucket: S3_BUCKET
-    },
-    headers: headers,
-    body: body,
-    timeout: 5000
-  }, function(err, response, body) {
-    if (err) {
-      return callback(err);
-    }
+var pendingUploads = 0;
 
-    if (response.statusCode === 200) {
-      return callback();
-    } else {
-      return callback(new Error(util.format("%d: %s", response.statusCode, body)));
-    }
+var upload = function(path, headers, body, callback) {
+  callback = callback || function() {};
+
+  pendingUploads++;
+
+  var operation = retry.operation({
+    retries: 5,
+    minTimeout: 50,
+    maxTimeout: 1000
+  });
+
+  return operation.attempt(function(currentAttempt) {
+    return request.put({
+      uri: util.format("http://%s.s3.amazonaws.com%s%s", S3_BUCKET, PATH_PREFIX, path),
+      aws: {
+        key: ACCESS_KEY_ID,
+        secret: SECRET_ACCESS_KEY,
+        bucket: S3_BUCKET
+      },
+      headers: headers,
+      body: body,
+      timeout: 5000
+    }, function(err, response, body) {
+      if (operation.retry(err)) {
+        return;
+      }
+
+      pendingUploads--;
+
+      if (err) {
+        return callback(operation.mainError());
+      }
+
+      if (response.statusCode === 200) {
+        return callback();
+      } else {
+        return callback(new Error(util.format("%d: %s", response.statusCode, body)));
+      }
+    });
   });
 };
 
