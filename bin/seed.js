@@ -32,6 +32,10 @@ var argv = require("optimist")
 
 
 var queue = async.queue(function(task, callback) {
+  if (DEBUG) {
+    console.log("Queuing", task);
+  }
+
   return jobs
     .create("render-" + STYLE_NAME, task)
     .priority(0)
@@ -67,6 +71,7 @@ var queueMetaTiles = function(zoom, range) {
         task.maxZoom = maxZoom;
         task.retina = !!argv.retina;
         task.metaTile = METATILE;
+        task.style = STYLE_NAME;
 
         queue.push(task);
       }
