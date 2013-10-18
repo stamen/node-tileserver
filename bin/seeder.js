@@ -24,7 +24,8 @@ var SCALE = process.env.SCALE || 1,
 
 var ACCESS_KEY_ID = env.require("AWS_ACCESS_KEY_ID"),
     SECRET_ACCESS_KEY = env.require("AWS_SECRET_ACCESS_KEY"),
-    S3_BUCKET = env.require("S3_BUCKET");
+    S3_BUCKET = env.require("S3_BUCKET"),
+    PATH_PREFIX = process.env.PATH_PREFIX || "";
 
 var merc = new SphericalMercator({
   size: TILE_SIZE
@@ -71,14 +72,15 @@ var queueSubtiles = function(jobs, task, tile) {
 var upload = function(path, headers, body, callback) {
   return request.put({
     // TODO prefix
-    uri: util.format("http://%s.s3.amazonaws.com%s", S3_BUCKET, path),
+    uri: util.format("http://%s.s3.amazonaws.com%s%s", S3_BUCKET, PATH_PREFIX, path),
     aws: {
       key: ACCESS_KEY_ID,
       secret: SECRET_ACCESS_KEY,
       bucket: S3_BUCKET
     },
     headers: headers,
-    body: body
+    body: body,
+    timeout: 5000
   }, function(err, response, body) {
     if (err) {
       return callback(err);

@@ -12,3 +12,8 @@ I need a better name.
 * `BUFFER_SIZE` - Map buffer size. Defaults to `128`.  May be overridden in
   a Carto `map` element (??).
 * `TILE_SIZE` - Tile height/width. Defaults to `256`.
+* `ACCESS_KEY_ID` - AWS access key. Required when seeding.
+* `SECRET_ACCESS_KEY` - AWS secret access key. Required when seeding.
+* `S3_BUCKET` - S3 bucket name. Required when seeding.
+* `PATH_PREFIX` - Optional path prefix to use when uploading seeded tiles.
+  Defaults to ``.
