@@ -33,6 +33,11 @@ var ACCESS_KEY_ID = env.require("AWS_ACCESS_KEY_ID"),
     S3_BUCKET = env.require("S3_BUCKET"),
     PATH_PREFIX = process.env.PATH_PREFIX || "";
 
+// add a leading slash if necessary
+if (PATH_PREFIX && PATH_PREFIX.indexOf("/") !== 0) {
+  PATH_PREFIX = "/" + PATH_PREFIX;
+}
+
 var merc = new SphericalMercator({
   size: TILE_SIZE
 });

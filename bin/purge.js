@@ -12,16 +12,23 @@ var client = knox.createClient({
   bucket: env.require("S3_BUCKET")
 });
 
+var PATH_PREFIX = process.env.PATH_PREFIX || "";
+
+// remove a leading slash if necessary
+if (PATH_PREFIX && PATH_PREFIX.indexOf("/") === 0) {
+  PATH_PREFIX = PATH_PREFIX.slice(1);
+}
+
 var count,
     deletedKeyCount = 0,
     marker;
 
 async.doWhilst(
   function(next) {
-    // TODO needs prefix support
     return client.list({
       // delimiter: "/",
-      marker: marker || ""
+      marker: marker || "",
+      prefix: PATH_PREFIX
     }, function(err, data) {
       if (err) {
         return next(err);
