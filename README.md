@@ -2,6 +2,31 @@
 
 I need a better name.
 
+## Upgrading
+
+If underlying binary dependencies (i.e. Mapnik) have changed, set
+`NPM_REBUILD=1` to trigger an `npm rebuild`.
+
+## Seeding
+
+Uses [Redis Cloud](https://addons.heroku.com/rediscloud)'s free plan to
+facilitate queueing.
+
+```bash
+heroku addons:add rediscloud:20
+heroku config:set AWS_ACCESS_KEY_ID=<redacted> \
+                  AWS_SECRET_ACCESS_KEY=<redacted> \
+                  S3_BUCKET=<redacted> \
+                  PATH_PREFIX=prefix \
+                  REDIS_URL=$(heroku config:get REDISCLOUD_URL)
+```
+
+```bash
+heroku run seed -b="-123.640 36.791 -121.025 38.719" -z 10 -Z 14
+
+heroku ps:scale worker=1
+```
+
 ## Environment Variables
 
 * `ENABLE_KUE_APP` - Enable [kue](https://github.com/LearnBoost/kue)'s web
