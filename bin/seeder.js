@@ -147,7 +147,7 @@ jobs.process("render-" + STYLE_NAME, os.cpus().length * 4, function(job, callbac
     return t.x >= xyz.minX &&
             t.x <= xyz.maxX &&
             t.y >= xyz.minY &&
-            t.y >= xyz.maxY;
+            t.y <= xyz.maxY;
   });
 
   var scale = SCALE,
