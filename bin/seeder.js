@@ -213,3 +213,33 @@ jobs.process("render", os.cpus().length * 4, function(job, callback) {
     }, callback);
   });
 });
+
+if (!process.env.DYNO || process.env.DYNO === "worker.1") {
+  // log locally / on the first worker
+  setInterval(function() {
+    console.log("=========================");
+
+    jobs.inactiveCount(function(count) {
+      metrics.updateGauge("jobs.queued", count);
+      console.log("%d queued jobs", count);
+    });
+
+    jobs.activeCount(function(count) {
+      metrics.updateGauge("jobs.active", count);
+      console.log("%d active jobs", count);
+    });
+
+    jobs.failedCount(function(count) {
+      metrics.updateGauge("jobs.failed", count);
+      console.log("%d failed jobs", count);
+    });
+
+    jobs.completeCount(function(count) {
+      metrics.updateGauge("jobs.complete", count);
+      console.log("%d completed jobs", count);
+    });
+
+    metrics.updateGauge("jobs.pending_uploads", pendingUploads);
+    console.log("%d pending uploads", pendingUploads);
+  }, 5000).unref();
+}
