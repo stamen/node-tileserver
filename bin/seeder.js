@@ -9,6 +9,7 @@ var http = require("http"),
 var async = require("async"),
     env = require("require-env"),
     kue = require("../lib/kue"),
+    metricsd = require("metricsd"),
     request = require("request"),
     SphericalMercator = require("sphericalmercator"),
     tilelive = require("tilelive"),
@@ -17,6 +18,10 @@ var async = require("async"),
 tileliveMapnik.registerProtocols(tilelive);
 
 http.globalAgent.maxSockets = 200;
+
+var metrics = metricsd({
+  log: !!process.env.ENABLE_METRICS
+});
 
 var SCALE = process.env.SCALE || 1,
     BUFFER_SIZE = process.env.BUFFER_SIZE || 128,
@@ -157,14 +162,11 @@ jobs.process("render", os.cpus().length * 4, function(job, callback) {
         path = util.format("/%d/%d/%d.png", tile.z, tile.x, tile.y);
       }
 
-      console.log("rendering", path);
+      // console.log("rendering", path);
 
-      // TODO time
-      return source.getTile(tile.z, tile.x, tile.y, function(err, data, headers) {
-        if (data.length > 334) {
-          console.log(path);
-        }
-
+      return source.getTile(tile.z, tile.x, tile.y,
+                            metrics.timeCallback("render." + scale + "x.z" + tile.z,
+                                                 function(err, data, headers) {
         queueSubtiles(jobs, task, tile);
 
         if (err) {
