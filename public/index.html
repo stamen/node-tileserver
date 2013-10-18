@@ -20,7 +20,8 @@ body, #map {
 <script>
   var map = L.map('map', {
       scrollWheelZoom: false,
-      attributionControl: false
+      attributionControl: false,
+      keyboardPanOffset: 256
   });
 
   if (!location.hash) {
