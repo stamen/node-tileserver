@@ -206,6 +206,7 @@ jobs.process("render", os.cpus().length * 4, function(job, callback) {
         // tilelive-mapnik does not currently expose whether that's the case,
         // although it knows:
         // https://github.com/mapbox/tilelive-mapnik/blob/master/lib/render.js#L91
+        // NOTE: 334 is the size of a 256x256 transparent tile
 
         return upload(path, headers, data);
       }));
