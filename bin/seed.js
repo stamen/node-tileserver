@@ -30,9 +30,16 @@ var argv = require("optimist")
     .demand(["b", "z", "Z"])
     .argv;
 
-var getMetaTiles = function(zoom, range) {
-  var tiles = [];
 
+var queue = async.queue(function(task, callback) {
+  return jobs
+    .create("render-" + STYLE_NAME, task)
+    .priority(0)
+    .attempts(5)
+    .save(callback);
+});
+
+var queueMetaTiles = function(zoom, range) {
   var minX = range.minX - (range.minX % METATILE),
       maxX = range.maxX - (METATILE - (range.maxX % METATILE)),
       minY = range.minY - (range.minY % METATILE),
@@ -42,16 +49,29 @@ var getMetaTiles = function(zoom, range) {
     for (var y = maxY; y >= minY; y--) {
       if (x % METATILE === 0 &&
           y % METATILE === 0) {
-        tiles.push({
+
+        var task = {
           z: zoom,
           x: x,
           y: y
-        });
+        };
+
+        if (argv.retina) {
+          task.path = util.format("/%d/%d/%d@2x.png", task.z, task.x, task.y);
+        } else {
+          task.path = util.format("/%d/%d/%d.png", task.z, task.x, task.y);
+        }
+
+        task.title = task.path;
+        task.bbox = bbox;
+        task.maxZoom = maxZoom;
+        task.retina = !!argv.retina;
+        task.metaTile = METATILE;
+
+        queue.push(task);
       }
     }
   }
-
-  return tiles;
 };
 
 var bbox = argv.bbox.split(" ", 4).map(Number);
@@ -62,30 +82,8 @@ console.log("Rendering [%s] from z%d-%d", bbox.join(", "), zoom, maxZoom);
 
 var jobs = kue.createQueue();
 
-async.each(getMetaTiles(zoom, merc.xyz(bbox, zoom)), function(tile, done) {
-  var path;
+queueMetaTiles(zoom, merc.xyz(bbox, zoom));
 
-  if (argv.retina) {
-    path = util.format("/%d/%d/%d@2x.png", tile.z, tile.x, tile.y);
-  } else {
-    path = util.format("/%d/%d/%d.png", tile.z, tile.x, tile.y);
-  }
-
-  tile.title = path;
-  tile.bbox = bbox;
-  tile.maxZoom = maxZoom;
-  tile.retina = !!argv.retina;
-  tile.metaTile = METATILE;
-
-  if (DEBUG) {
-    console.log("Queueing %s as %j", STYLE_NAME, tile);
-  }
-
-  jobs
-    .create("render-" + STYLE_NAME, tile)
-    .priority(0)
-    .attempts(5)
-    .save(done);
-}, function() {
+queue.drain = function() {
   process.exit();
-});
+};
