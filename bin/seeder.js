@@ -191,8 +191,10 @@ jobs.process("render", os.cpus().length * 4, function(job, callback) {
 
         if (err) {
           console.warn("render:", err);
-          return done(err);
         }
+
+        // claim that we're done and let the upload take care of itself
+        done(err);
 
         // TODO configurable max-age
         headers["Cache-Control"] = "public,max-age=300";
@@ -205,9 +207,8 @@ jobs.process("render", os.cpus().length * 4, function(job, callback) {
         // although it knows:
         // https://github.com/mapbox/tilelive-mapnik/blob/master/lib/render.js#L91
 
-        // TODO retry failed uploads
-        return upload(path, headers, data, done);
-      });
+        return upload(path, headers, data);
+      }));
     }, callback);
   });
 });
