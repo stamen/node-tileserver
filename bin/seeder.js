@@ -72,9 +72,10 @@ var queueSubtiles = function(jobs, task, tile) {
       x.maxZoom = task.maxZoom;
       x.bbox = task.bbox;
       x.metaTile = task.metaTile;
+      x.style = task.style;
 
       jobs
-        .create("render", x)
+        .create("render-" + x.style, x)
         .priority(x.z)
         .attempts(5)
         .save();
