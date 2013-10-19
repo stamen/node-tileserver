@@ -4,9 +4,10 @@
 
 var url = require("url");
 
-var redis = require("kue/node_modules/redis");
+var env = require("require-env"),
+    redis = require("kue/node_modules/redis");
 
-var redisUrl = url.parse(process.env.REDIS_URL),
+var redisUrl = url.parse(env.require("REDIS_URL")),
     client = redis.createClient(redisUrl.port, redisUrl.hostname);
 
 if (redisUrl.auth) {
