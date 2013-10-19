@@ -250,12 +250,12 @@ if (!process.env.DYNO || process.env.DYNO === "worker.1") {
       console.log("  %d active jobs", count);
 
       count = counts.shift();
-      metrics.updateGauge("jobs.failed", count);
-      console.log("  %d failed jobs", count);
-
-      count = counts.shift();
       metrics.updateGauge("jobs.complete", count);
       console.log("  %d completed jobs", count);
+
+      count = counts.shift();
+      metrics.updateGauge("jobs.failed", count);
+      console.log("  %d failed jobs", count);
 
       console.log("=====================");
     });
