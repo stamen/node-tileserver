@@ -227,29 +227,37 @@ jobs.process("render-" + STYLE_NAME, os.cpus().length * 4, function(job, callbac
 if (!process.env.DYNO || process.env.DYNO === "worker.1") {
   // log locally / on the first worker
   setInterval(function() {
-    console.log("=========================");
 
-    jobs.inactiveCount(function(count) {
-      metrics.updateGauge("jobs.queued", count || 0);
-      console.log("%d queued jobs", count);
+    async.parallel([
+      function(done) { jobs.inactiveCount(done); },
+      function(done) { jobs.activeCount(done); },
+      function(done) { jobs.completeCount(done); },
+      function(done) { jobs.failedCount(done); }
+    ], function(err, counts) {
+      var count;
+      
+      console.log("=====================");
+
+      metrics.updateGauge("jobs.pending_uploads", pendingUploads);
+      console.log("  %d pending uploads", pendingUploads);
+
+      count = counts.shift();
+      metrics.updateGauge("jobs.queued", count);
+      console.log("  %d queued jobs", count);
+
+      count = counts.shift();
+      metrics.updateGauge("jobs.active", count);
+      console.log("  %d active jobs", count);
+
+      count = counts.shift();
+      metrics.updateGauge("jobs.failed", count);
+      console.log("  %d failed jobs", count);
+
+      count = counts.shift();
+      metrics.updateGauge("jobs.complete", count);
+      console.log("  %d completed jobs", count);
+
+      console.log("=====================");
     });
-
-    jobs.activeCount(function(count) {
-      metrics.updateGauge("jobs.active", count || 0);
-      console.log("%d active jobs", count);
-    });
-
-    jobs.failedCount(function(count) {
-      metrics.updateGauge("jobs.failed", count || 0);
-      console.log("%d failed jobs", count);
-    });
-
-    jobs.completeCount(function(count) {
-      metrics.updateGauge("jobs.complete", count || 0);
-      console.log("%d completed jobs", count);
-    });
-
-    metrics.updateGauge("jobs.pending_uploads", pendingUploads);
-    console.log("%d pending uploads", pendingUploads);
   }, 5000).unref();
 }
