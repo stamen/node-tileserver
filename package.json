@@ -8,7 +8,7 @@
     "purge": "./bin/purge.js",
     "tileserver": "./bin/tileserver.js",
     "jsonify": "./bin/jsonify.js",
-    "kue-reset": "./bin/kue-reset.js"
+    "queue-info": "./bin/queue-info.js"
   },
   "repository": {
     "type": "git",
@@ -31,8 +31,8 @@
     "optimist": "~0.6.0",
     "knox": "~0.8.6",
     "metricsd": "~0.2.3",
-    "kue": "~0.6.2",
-    "retry": "~0.6.0"
+    "retry": "~0.6.0",
+    "aws-sdk": "~1.9.0"
   },
   "engines": {
     "node": "~0.10.15"

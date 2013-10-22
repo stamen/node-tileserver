@@ -22,21 +22,21 @@ heroku config:set AWS_ACCESS_KEY_ID=<redacted> \
 ```
 
 ```bash
-heroku run seed -b="-123.640 36.791 -121.025 38.719" -z 10 -Z 14
+heroku run 'seed -b="-123.640 36.791 -121.025 38.719" -z 10 -Z 14'
 
 heroku ps:scale worker=1
 ```
 
 ## Environment Variables
 
-* `ENABLE_KUE_APP` - Enable [kue](https://github.com/LearnBoost/kue)'s web
-  interface for viewing task status. Defaults to `false`.
 * `SCALE` - Rendering scale. Defaults to `1`.
 * `METATILE` - Metatile size (how many tiles on an edge to render at a time).
   Defaults to `4`.
 * `BUFFER_SIZE` - Map buffer size. Defaults to `128`.  May be overridden in
   a Carto `map` element (??).
 * `TILE_SIZE` - Tile height/width. Defaults to `256`.
+* `AWS_DEFAULT_REGION` - Default AWS region to use when making calls that
+  require one.  Defaults to `us-east-1`.
 * `ACCESS_KEY_ID` - AWS access key. Required when seeding.
 * `SECRET_ACCESS_KEY` - AWS secret access key. Required when seeding.
 * `S3_BUCKET` - S3 bucket name. Required when seeding.

@@ -6,8 +6,9 @@ var util = require("util");
 
 var async = require("async"),
     env = require("require-env"),
-    kue = require("../lib/kue"),
     SphericalMercator = require("sphericalmercator");
+
+var createQueue = require("../lib/queue").createQueue;
 
 var METATILE = +process.env.METATILE || 4,
     STYLE_NAME = env.require("STYLE_NAME"),
@@ -31,17 +32,19 @@ var argv = require("optimist")
     .argv;
 
 
+var jobs = createQueue();
+
 var queue = async.queue(function(task, callback) {
   if (DEBUG) {
     console.log("Queuing", task);
   }
 
   return jobs
-    .create("render-" + STYLE_NAME, task)
+    .create(STYLE_NAME, task)
     .priority(0)
     .attempts(5)
     .save(callback);
-});
+}, 50);
 
 var queueMetaTiles = function(zoom, range) {
   var minX = range.minX - (range.minX % METATILE),
@@ -49,6 +52,7 @@ var queueMetaTiles = function(zoom, range) {
       minY = range.minY - (range.minY % METATILE),
       maxY = range.maxY - (METATILE - (range.maxY % METATILE));
 
+  // TODO create an async version of this using async.whilst
   for (var x = minX; x <= maxX; x++) {
     for (var y = maxY; y >= minY; y--) {
       if (x % METATILE === 0 &&
@@ -84,8 +88,6 @@ var zoom = argv.z;
 var maxZoom = argv.Z;
 
 console.log("Rendering [%s] from z%d-%d", bbox.join(", "), zoom, maxZoom);
-
-var jobs = kue.createQueue();
 
 queueMetaTiles(zoom, merc.xyz(bbox, zoom));
 

@@ -8,7 +8,6 @@ var http = require("http"),
 
 var async = require("async"),
     env = require("require-env"),
-    kue = require("../lib/kue"),
     metricsd = require("metricsd"),
     request = require("request"),
     retry = require("retry"),
@@ -17,6 +16,8 @@ var async = require("async"),
     tileliveMapnik = require("tilelive-mapnik");
 
 tileliveMapnik.registerProtocols(tilelive);
+
+var createQueue = require("../lib/queue").createQueue;
 
 http.globalAgent.maxSockets = 200;
 
@@ -75,7 +76,7 @@ var queueSubtiles = function(jobs, task, tile) {
       x.style = task.style;
 
       jobs
-        .create("render-" + x.style, x)
+        .create(x.style, x)
         .priority(x.z)
         .attempts(5)
         .save();
@@ -128,9 +129,9 @@ var upload = function(path, headers, body, callback) {
 };
 
 
-var jobs = kue.createQueue();
+var jobs = createQueue();
 
-jobs.process("render-" + STYLE_NAME, os.cpus().length * 4, function(job, callback) {
+jobs.process(STYLE_NAME, os.cpus().length * 4, function(job, callback) {
   var task = job.data;
 
   var tiles = [];
@@ -231,8 +232,6 @@ if (!process.env.DYNO || process.env.DYNO === "worker.1") {
     async.parallel([
       function(done) { jobs.inactiveCount(done); },
       function(done) { jobs.activeCount(done); },
-      function(done) { jobs.completeCount(done); },
-      function(done) { jobs.failedCount(done); }
     ], function(err, counts) {
       var count;
       
@@ -248,14 +247,6 @@ if (!process.env.DYNO || process.env.DYNO === "worker.1") {
       count = counts.shift();
       metrics.updateGauge("jobs.active", count);
       console.log("  %d active jobs", count);
-
-      count = counts.shift();
-      metrics.updateGauge("jobs.complete", count);
-      console.log("  %d completed jobs", count);
-
-      count = counts.shift();
-      metrics.updateGauge("jobs.failed", count);
-      console.log("  %d failed jobs", count);
 
       console.log("=====================");
     });
