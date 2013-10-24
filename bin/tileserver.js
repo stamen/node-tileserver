@@ -31,6 +31,7 @@ var app = express();
 app.configure(function() {
   app.disable("x-powered-by");
   app.use(express.responseTime());
+  app.use(express.compress());
   app.use(cors());
   app.use(express.static(__dirname + "/../public"));
 });
@@ -106,6 +107,38 @@ async.series([
 
       app.get(new RegExp("^/(\\d+)/(\\d+)/(\\d+)\\." + format),
               makeRenderHandler(info, source));
+
+      app.get(new RegExp("^/(\\d+)/(\\d+)/(\\d+)\\.json"), function(req, res) {
+        var z = +req.params[0],
+            x = +req.params[1],
+            y = +req.params[2];
+
+        // validate zoom
+        if (z < info.minzoom || z > info.maxzoom) {
+          return res.send(404);
+        }
+
+        // validate coords against bounds
+        var xyz = merc.xyz(info.bounds, z);
+
+        if (x < xyz.minX ||
+            x > xyz.maxX ||
+            y < xyz.minY ||
+            y > xyz.maxY) {
+          return res.send(404);
+        }
+
+        source.getGrid(z, x, y,
+                       metrics.timeCallback("render.grid." + info.scale + "x.z" + z, function(err, tile, headers) {
+          if (err) {
+            console.warn(err);
+            return res.send(500);
+          }
+
+          res.set(headers);
+          res.send(tile);
+        }));
+      });
 
       setInterval(function() {
         Object.keys(source._stats).forEach(function(k) {
