@@ -72,6 +72,10 @@ var makeRenderHandler = function(info, source) {
       }
 
       res.set(headers);
+
+      // TODO configurable max-age
+      res.set("Cache-Control", "public,max-age=300");
+
       res.send(tile);
     }));
   };
@@ -136,6 +140,10 @@ async.series([
           }
 
           res.set(headers);
+
+          // TODO configurable max-age
+          res.set("Cache-Control", "public,max-age=300");
+
           res.send(tile);
         }));
       });
