@@ -210,6 +210,7 @@ jobs.process(STYLE_NAME, os.cpus().length * 4, function(job, callback) {
         // TODO configurable max-age
         headers["Cache-Control"] = "public,max-age=300";
         headers["x-amz-acl"] = "public-read";
+        headers["x-amz-storage-class"] = "REDUCED_REDUNDANCY";
 
         // TODO if image was solid (and transparent), register an S3 redirect
         // instead of uploading:
