@@ -5,7 +5,6 @@
   "bin": {
     "seed": "./bin/seed.js",
     "seeder": "./bin/seeder.js",
-    "purge": "./bin/purge.js",
     "tileserver": "./bin/tileserver.js",
     "queue-info": "./bin/queue-info.js"
   },
@@ -28,10 +27,10 @@
     "async": "~0.2.9",
     "sphericalmercator": "~1.0.2",
     "optimist": "~0.6.0",
-    "knox": "~0.8.6",
     "metricsd": "~0.2.3",
     "retry": "~0.6.0",
-    "aws-sdk": "~1.9.0"
+    "aws-sdk": "~1.9.0",
+    "s3-tile-purger": "~0.1.2"
   },
   "engines": {
     "node": "~0.10.15"
