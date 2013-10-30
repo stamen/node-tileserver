@@ -113,10 +113,10 @@ async.series([
       hostname: "",
       pathname: stylesheetPath,
       query: {
-        metatile: METATILE,
-        bufferSize: BUFFER_SIZE,
-        tileSize: TILE_SIZE,
-        scale: SCALE
+        metatile: METATILE, // TODO get this out of stylesheet.xml (info)
+        bufferSize: BUFFER_SIZE, // TODO get this out of stylesheet.xml (info)
+        tileSize: TILE_SIZE, // TODO get this out of stylesheet.xml (info)
+        scale: SCALE // TODO get this out of stylesheet.xml (info)
       }
     }, function(err, source) {
       if (err) {
