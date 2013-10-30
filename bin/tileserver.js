@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 "use strict";
 
-var path = require("path"),
+var fs   = require("fs"),
+    path = require("path"),
+    url  = require("url"),
     util = require("util");
 
 var async = require("async"),
@@ -81,12 +83,35 @@ var makeRenderHandler = function(info, source) {
   };
 };
 
+//
+// Fill in stylesheet placeholders
+//
+
+var stylesheet = fs.readFileSync(path.join(process.cwd(), "stylesheet.xml"), {
+  encoding: "utf8"
+});
+
+var creds = url.parse(process.env.DATABASE_URL),
+    auth  = creds.auth.split(":", 2);
+
+stylesheet = stylesheet
+  .replace(/{{dbname}}/g, creds.path.slice(1))
+  .replace(/{{dbhost}}/g, creds.hostname)
+  .replace(/{{dbuser}}/g, auth[0])
+  .replace(/{{dbpassword}}/g, auth[1] || "")
+  .replace(/{{dbport}}/g, creds.port || "");
+
+// write this to a different filename to avoid corrupting the source file (in
+// case it needs to be used as an input again)
+var stylesheetPath = path.join(process.cwd(), "style.xml");
+fs.writeFileSync(stylesheetPath, stylesheet);
+
 async.series([
   function(done) {
     tilelive.load({
       protocol: "mapnik:",
-      hostname: ".",
-      pathname: "/stylesheet.xml",
+      hostname: "",
+      pathname: stylesheetPath,
       query: {
         metatile: METATILE,
         bufferSize: BUFFER_SIZE,
@@ -160,8 +185,8 @@ async.series([
   function(done) {
     tilelive.load({
       protocol: "mapnik:",
-      hostname: ".",
-      pathname: "/stylesheet.xml",
+      hostname: "",
+      pathname: stylesheetPath,
       query: {
         metatile: METATILE,
         bufferSize: BUFFER_SIZE * 2,
