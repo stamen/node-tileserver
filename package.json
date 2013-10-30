@@ -7,7 +7,6 @@
     "seeder": "./bin/seeder.js",
     "purge": "./bin/purge.js",
     "tileserver": "./bin/tileserver.js",
-    "jsonify": "./bin/jsonify.js",
     "queue-info": "./bin/queue-info.js"
   },
   "repository": {
