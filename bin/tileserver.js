@@ -155,7 +155,7 @@ async.waterfall([
           info.minzoom = info.minzoom || 0;
           info.maxzoom = info.maxzoom || Infinity;
           info.bounds = info.bounds || [-180, -90, 180, 90];
-          info.scale = info.scale || SCALE;
+          info.scale = params.scale;
 
           var format = info.format || "png";
 
