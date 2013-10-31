@@ -79,28 +79,35 @@ var makeRenderHandler = function(info, source) {
   };
 };
 
+// TODO this should optionally be a command-line argument
+// for relative filenames to work, we should probably chdir to the directory
+// containing the stylesheet (once it's configurable)
+var stylesheetPath = path.join(process.cwd(), "stylesheet.xml");
+
+var stylesheet = fs.readFileSync(stylesheetPath, {
+  encoding: "utf8"
+});
+
 //
 // Fill in stylesheet placeholders
 //
 
-var stylesheet = fs.readFileSync(path.join(process.cwd(), "stylesheet.xml"), {
-  encoding: "utf8"
-});
+if (process.env.DATABASE_URL) {
+  var creds = url.parse(process.env.DATABASE_URL),
+      auth  = creds.auth.split(":", 2);
 
-var creds = url.parse(process.env.DATABASE_URL),
-    auth  = creds.auth.split(":", 2);
+  stylesheet = stylesheet
+    .replace(/{{dbname}}/g, creds.path.slice(1))
+    .replace(/{{dbhost}}/g, creds.hostname)
+    .replace(/{{dbuser}}/g, auth[0])
+    .replace(/{{dbpassword}}/g, auth[1] || "")
+    .replace(/{{dbport}}/g, creds.port || "");
 
-stylesheet = stylesheet
-  .replace(/{{dbname}}/g, creds.path.slice(1))
-  .replace(/{{dbhost}}/g, creds.hostname)
-  .replace(/{{dbuser}}/g, auth[0])
-  .replace(/{{dbpassword}}/g, auth[1] || "")
-  .replace(/{{dbport}}/g, creds.port || "");
-
-// write this to a different filename to avoid corrupting the source file (in
-// case it needs to be used as an input again)
-var stylesheetPath = path.join(process.cwd(), "style.xml");
-fs.writeFileSync(stylesheetPath, stylesheet);
+  // write this to a different filename to avoid corrupting the source file (in
+  // case it needs to be used as an input again)
+  stylesheetPath = path.join(process.cwd(), "style.xml");
+  fs.writeFileSync(stylesheetPath, stylesheet);
+}
 
 async.waterfall([
   function(done) {
