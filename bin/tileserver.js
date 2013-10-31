@@ -149,8 +149,6 @@ async.waterfall([
             process.exit(1);
           }
 
-          console.log("@1x initialized.");
-
           var info = source._info || {};
           info.minzoom = info.minzoom || 0;
           info.maxzoom = info.maxzoom || Infinity;
@@ -204,6 +202,7 @@ async.waterfall([
             });
           }, 30000);
 
+          console.log("@1x initialized.");
           return done();
         });
       },
@@ -224,8 +223,6 @@ async.waterfall([
             process.exit(1);
           }
 
-          console.log("@2x initialized.");
-
           var info = source._info || {};
           info.minzoom = info.minzoom || 0;
           info.maxzoom = info.maxzoom || Infinity;
@@ -243,6 +240,7 @@ async.waterfall([
             });
           }, 30000);
 
+          console.log("@2x initialized.");
           return done();
         });
       }
