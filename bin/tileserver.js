@@ -220,7 +220,7 @@ async.waterfall([
           pathname: stylesheetPath,
           query: {
             metatile: params.metatile,
-            bufferSize: params.bufferSize * 2,
+            bufferSize: params.bufferSize,
             tileSize: params.tileSize * 2,
             scale: params.scale * 2
           }
