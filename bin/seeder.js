@@ -210,6 +210,9 @@ var createWorker = function(sources, info, queue) {
       }
 
       // TODO check if it's already in S3 before rendering (for slow tiles?)
+      // TODO when this is rendering a metatile, it would be nice to get back
+      // a list of the other tiles that got rendered so we can fetch them
+      // separately
       return source.getTile(tile.z, tile.x, tile.y,
                             metrics.timeCallback("render." + scale + "x.z" + tile.z,
                                                 function(err, data, headers) {
