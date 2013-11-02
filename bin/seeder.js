@@ -25,6 +25,7 @@ var metrics = metricsd({
   log: !!process.env.ENABLE_METRICS
 });
 
+// TODO pull most of this from the style's info
 var SCALE = process.env.SCALE || 1,
     BUFFER_SIZE = process.env.BUFFER_SIZE || 128,
     TILE_SIZE = process.env.TILE_SIZE || 256,
@@ -158,7 +159,6 @@ jobs.process(STYLE_NAME, os.cpus().length * 4, function(job, callback) {
 
   if (task.retina) {
     scale *= 2;
-    bufferSize *= 2;
     tileSize *= 2;
   }
 
@@ -230,26 +230,19 @@ if (!process.env.DYNO || process.env.DYNO === "worker.1") {
   // log locally / on the first worker
   setInterval(function() {
 
-    async.parallel([
-      function(done) { jobs.inactiveCount(done); },
-      function(done) { jobs.activeCount(done); },
-    ], function(err, counts) {
-      var count;
-      
-      console.log("=====================");
-
+    async.parallel({
+      queued: function(done) { jobs.inactiveCount(done); },
+      active: function(done) { jobs.activeCount(done); },
+    }, function(err, counts) {
       metrics.updateGauge("jobs.pending_uploads", pendingUploads);
-      console.log("  %d pending uploads", pendingUploads);
+      metrics.updateGauge("jobs.queued", counts.queued);
+      metrics.updateGauge("jobs.active", counts.active);
 
-      count = counts.shift();
-      metrics.updateGauge("jobs.queued", count);
-      console.log("  %d queued jobs", count);
-
-      count = counts.shift();
-      metrics.updateGauge("jobs.active", count);
-      console.log("  %d active jobs", count);
-
-      console.log("=====================");
+      console.log("=======================");
+      console.log("  %d pending upload(s)", pendingUploads);
+      console.log("  %d queued job(s)", counts.queued);
+      console.log("  %d active job(s)", counts.active);
+      console.log("=======================");
     });
   }, 5000).unref();
 }
