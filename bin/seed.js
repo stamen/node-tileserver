@@ -54,7 +54,7 @@ tbd.loadInfo({}, function(err, info) {
         incomplete: " ",
         width: 72
       }),
-      queue = createQueue(info.name, q.createQueue);
+      queue = createQueue(info.name, q.createQueue());
 
   return metaTiles(range, info, function(xy, callback) {
     var task = xy;
