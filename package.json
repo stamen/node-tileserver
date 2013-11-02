@@ -6,7 +6,8 @@
     "seed": "./bin/seed.js",
     "seeder": "./bin/seeder.js",
     "tileserver": "./bin/tileserver.js",
-    "queue-info": "./bin/queue-info.js"
+    "queue-info": "./bin/queue-info.js",
+    "empty-queue": "./bin/empty-queue.js"
   },
   "repository": {
     "type": "git",
