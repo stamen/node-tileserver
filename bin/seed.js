@@ -6,13 +6,13 @@ var util = require("util");
 
 var async = require("async"),
     env = require("require-env"),
+    ProgressBar = require("progress"),
     SphericalMercator = require("sphericalmercator");
 
-var createQueue = require("../lib/queue").createQueue;
+var q = require("../lib/queue"),
+    tbd = require("../lib");
 
-var METATILE = +process.env.METATILE || 4,
-    STYLE_NAME = env.require("STYLE_NAME"),
-    DEBUG = !!process.env.DEBUG;
+var DEBUG = !!process.env.DEBUG;
 
 var merc = new SphericalMercator({
   size: process.env.TILE_SIZE || 256
@@ -31,66 +31,117 @@ var argv = require("optimist")
     .demand(["b", "z", "Z"])
     .argv;
 
-
-var jobs = createQueue();
-
-var queue = async.queue(function(task, callback) {
-  if (DEBUG) {
-    console.log("Queuing", task);
+// first arg is a placeholder for options
+tbd.loadInfo({}, function(err, info) {
+  if (err) {
+    console.error(err.stack);
+    process.exit(1);
   }
 
-  return jobs
-    .create(STYLE_NAME, task)
-    .priority(0)
-    .attempts(5)
-    .save(callback);
-}, 50);
+  var bbox = argv.bbox.split(" ", 4).map(Number),
+      zoom = argv.z,
+      maxZoom = argv.Z,
+      merc = new SphericalMercator({
+        size: info.tileSize
+      });
 
-var queueMetaTiles = function(zoom, range) {
-  var minX = range.minX - (range.minX % METATILE),
-      maxX = range.maxX - (METATILE - (range.maxX % METATILE)),
-      minY = range.minY - (range.minY % METATILE),
-      maxY = range.maxY - (METATILE - (range.maxY % METATILE));
+  console.log("Rendering [%s] from z%d-%d", bbox.join(", "), zoom, maxZoom);
 
-  // TODO create an async version of this using async.whilst
-  for (var x = minX; x <= maxX; x++) {
-    for (var y = maxY; y >= minY; y--) {
-      if (x % METATILE === 0 &&
-          y % METATILE === 0) {
+  var range = merc.xyz(bbox, zoom),
+      tileCount = (1 + range.maxX - range.minX) * (1 + range.maxY - range.minY) / info.metatile,
+      bar = new ProgressBar(util.format("%s [:bar] :percent :etas", info.name), {
+        total: tileCount,
+        incomplete: " ",
+        width: 72
+      }),
+      queue = createQueue(info.name, q.createQueue);
 
-        var task = {
-          z: zoom,
-          x: x,
-          y: y
-        };
+  return metaTiles(range, info, function(xy, callback) {
+    var task = xy;
+    task.z = zoom;
 
-        if (argv.retina) {
-          task.path = util.format("/%d/%d/%d@2x.png", task.z, task.x, task.y);
-        } else {
-          task.path = util.format("/%d/%d/%d.png", task.z, task.x, task.y);
-        }
-
-        task.title = task.path;
-        task.bbox = bbox;
-        task.maxZoom = maxZoom;
-        task.retina = !!argv.retina;
-        task.metaTile = METATILE;
-        task.style = STYLE_NAME;
-
-        queue.push(task);
-      }
+    if (argv.retina) {
+      task.path = util.format("/%d/%d/%d@2x.png", task.z, task.x, task.y);
+    } else {
+      task.path = util.format("/%d/%d/%d.png", task.z, task.x, task.y);
     }
-  }
+
+    task.title = task.path;
+    task.bbox = bbox;
+    task.maxZoom = maxZoom;
+    task.retina = !!argv.retina;
+    task.metaTile = info.metatile;
+    task.style = info.name;
+
+    queue.push(task, bar.tick.bind(bar));
+
+    return callback();
+  }, function(err) {
+    var code = 0;
+
+    if (err) {
+      console.error(err.stack);
+      code = 1;
+    }
+
+    queue.drain = function() {
+      process.exit(code);
+    };
+  });
+});
+
+var createQueue = function(styleName, queue) {
+  return async.queue(function(task, callback) {
+    if (DEBUG) {
+      console.log("Queuing", task);
+    }
+
+    return queue
+      .create(styleName, task)
+      .priority(0)
+      .attempts(5)
+      .save(callback);
+  }, 50);
 };
 
-var bbox = argv.bbox.split(" ", 4).map(Number);
-var zoom = argv.z;
-var maxZoom = argv.Z;
+var metaTiles = function(range, info, iterator, callback) {
+  callback = callback || function() {};
 
-console.log("Rendering [%s] from z%d-%d", bbox.join(", "), zoom, maxZoom);
+  var metatile = info.metatile;
 
-queueMetaTiles(zoom, merc.xyz(bbox, zoom));
+  // start on the left-/top-most metatile
+  var minX = range.minX - (range.minX % metatile),
+      maxX = range.maxX,
+      minY = range.minY - (range.minY % metatile),
+      maxY = range.maxY;
 
-queue.drain = function() {
-  process.exit();
+  var x = minX;
+
+  return async.whilst(function() {
+    return x <= maxX;
+  }, function(nextRow) {
+    var y = maxY;
+
+    return async.whilst(function() {
+      return y >= minY;
+    }, function(nextCol) {
+      if (x % metatile === 0 &&
+          y % metatile === 0) {
+        return iterator({
+          x: x,
+          y: y
+        }, function() {
+          y--;
+          return setImmediate(nextCol);
+        });
+      }
+
+      y--;
+      return nextCol();
+    }, function() {
+      x++;
+
+      return nextRow();
+    });
+  }, callback);
 };
