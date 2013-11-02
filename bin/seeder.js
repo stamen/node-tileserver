@@ -4,6 +4,7 @@
 
 var http = require("http"),
     os = require("os"),
+    path = require("path"),
     util = require("util");
 
 var async = require("async"),
@@ -17,7 +18,8 @@ var async = require("async"),
 
 tileliveMapnik.registerProtocols(tilelive);
 
-var createQueue = require("../lib/queue").createQueue;
+var q = require("../lib/queue"),
+    tbd = require("../lib");
 
 http.globalAgent.maxSockets = 200;
 
@@ -25,23 +27,56 @@ var metrics = metricsd({
   log: !!process.env.ENABLE_METRICS
 });
 
-// TODO pull most of this from the style's info
-var SCALE = process.env.SCALE || 1,
-    BUFFER_SIZE = process.env.BUFFER_SIZE || 128,
-    TILE_SIZE = process.env.TILE_SIZE || 256,
-    ACCESS_KEY_ID = env.require("AWS_ACCESS_KEY_ID"),
+var ACCESS_KEY_ID = env.require("AWS_ACCESS_KEY_ID"),
     SECRET_ACCESS_KEY = env.require("AWS_SECRET_ACCESS_KEY"),
     S3_BUCKET = env.require("S3_BUCKET"),
     PATH_PREFIX = process.env.PATH_PREFIX || "",
-    STYLE_NAME = env.require("STYLE_NAME");
+    DEBUG = !!process.env.DEBUG;
 
 // add a leading slash if necessary
 if (PATH_PREFIX && PATH_PREFIX.indexOf("/") !== 0) {
   PATH_PREFIX = "/" + PATH_PREFIX;
 }
 
-var merc = new SphericalMercator({
-  size: TILE_SIZE
+
+tbd.getSources({
+  path: path.join(process.cwd(), "stylesheet.xml")
+}, function(err, sources, info) {
+  if (err) {
+    console.error(err.stack);
+    process.exit(1);
+  }
+
+  console.log(info);
+
+  var queue = q.createQueue();
+
+  queue.process(info.name, os.cpus().length * 4, createWorker(sources, info, queue));
+
+  if (!process.env.DYNO || process.env.DYNO === "worker.1") {
+    // log locally / on the first worker
+    setInterval(function() {
+
+      return async.parallel({
+        queued: async.apply(queue.inactiveCount.bind(queue)),
+        active: async.apply(queue.activeCount.bind(queue)),
+        running: async.apply(queue.runningCount.bind(queue)),
+        pending: async.apply(queue.runningCount.bind(queue))
+      }, function(err, counts) {
+        metrics.updateGauge("jobs.pending_uploads", pendingUploads);
+        metrics.updateGauge("jobs.queued", counts.queued);
+        metrics.updateGauge("jobs.active", counts.active);
+
+        console.log("==============================");
+        console.log("  %d pending upload(s)", pendingUploads);
+        console.log("  %d queued job(s)", counts.queued);
+        console.log("  %d active job(s)", counts.active);
+        console.log("  %d locally running job(s)", counts.running);
+        console.log("  %d locally pending job(s)", counts.pending - counts.running);
+        console.log("==============================");
+      });
+    }, 5000).unref();
+  }
 });
 
 var getSubtiles = function(z, x, y) {
@@ -56,8 +91,8 @@ var getSubtiles = function(z, x, y) {
 var queueSubtiles = function(jobs, task, tile) {
   if (tile.z < task.maxZoom) {
     var subtiles = getSubtiles(tile.z, tile.x, tile.y).filter(function(t) {
-      return (t.x % task.metaTile === 0 &&
-              t.y % task.metaTile === 0);
+      return (t.x % task.metatile === 0 &&
+              t.y % task.metatile === 0);
     });
 
     subtiles.forEach(function(x) {
@@ -73,7 +108,7 @@ var queueSubtiles = function(jobs, task, tile) {
       x.retina = task.retina;
       x.maxZoom = task.maxZoom;
       x.bbox = task.bbox;
-      x.metaTile = task.metaTile;
+      x.metatile = task.metatile;
       x.style = task.style;
 
       jobs
@@ -97,6 +132,10 @@ var upload = function(path, headers, body, callback) {
     minTimeout: 50,
     maxTimeout: 1000
   });
+
+  // add S3-specific headers
+  headers["x-amz-acl"] = "public-read";
+  headers["x-amz-storage-class"] = "REDUCED_REDUNDANCY";
 
   return operation.attempt(function(currentAttempt) {
     return request.put({
@@ -129,60 +168,33 @@ var upload = function(path, headers, body, callback) {
   });
 };
 
-
-var jobs = createQueue();
-
-jobs.process(STYLE_NAME, os.cpus().length * 4, function(job, callback) {
-  var task = job.data;
-
-  var tiles = [];
-
-  for (var x = task.x; x < task.x + task.metaTile; x++) {
-    for (var y = task.y; y < task.y + task.metaTile; y++) {
-      tiles.push({ z: task.z, x: x, y: y });
-    }
-  }
-
-  // validate coords against bounds
-  var xyz = merc.xyz(task.bbox, task.z);
-
-  tiles = tiles.filter(function(t) {
-    return t.x >= xyz.minX &&
-            t.x <= xyz.maxX &&
-            t.y >= xyz.minY &&
-            t.y <= xyz.maxY;
+var createWorker = function(sources, info, queue) {
+  var merc = new SphericalMercator({
+    size: info.tileSize
   });
 
-  var scale = SCALE,
-      bufferSize = BUFFER_SIZE,
-      tileSize = TILE_SIZE;
+  return function(job, callback) {
+    var task = job.data,
+        tiles = [];
 
-  if (task.retina) {
-    scale *= 2;
-    tileSize *= 2;
-  }
+    for (var x = task.x; x < task.x + task.metatile; x++) {
+      for (var y = task.y; y < task.y + task.metatile; y++) {
+        tiles.push({ z: task.z, x: x, y: y });
+      }
+    }
 
-  // assume tilelive caches sources; these will probably all be the same, but
-  // if retina seeding is mixed with standard-def, scale will vary
-  // in theory, setting scale at render-time will set the option on the pooled
-  // map object and allow the stylesheet to only be loaded once
-  // MapnikSource._createPool uses the options that it's initialized with
-  // (potentially deferred), so that won't work with the current implementation
-  return tilelive.load({
-    protocol: "mapnik:",
-    hostname: ".",
-    pathname: "/stylesheet.xml",
-    query: {
-      metatile: task.metaTile,
-      bufferSize: bufferSize,
-      tileSize: tileSize,
-      scale: scale
-    }
-  }, function(err, source) {
-    if (err) {
-      console.warn("load:", err);
-      return callback(err);
-    }
+    // validate coords against bounds
+    var xyz = merc.xyz(task.bbox, task.z);
+
+    tiles = tiles.filter(function(t) {
+      return t.x >= xyz.minX &&
+              t.x <= xyz.maxX &&
+              t.y >= xyz.minY &&
+              t.y <= xyz.maxY;
+    });
+
+    var scale = task.retina ? 2 : 1,
+        source = sources["@" + scale + "x"];
 
     return async.each(tiles, function(tile, done) {
       var path;
@@ -193,56 +205,36 @@ jobs.process(STYLE_NAME, os.cpus().length * 4, function(job, callback) {
         path = util.format("/%d/%d/%d.png", tile.z, tile.x, tile.y);
       }
 
-      // console.log("rendering", path);
+      if (DEBUG) {
+        console.log("rendering", path);
+      }
 
+      // TODO check if it's already in S3 before rendering (for slow tiles?)
       return source.getTile(tile.z, tile.x, tile.y,
                             metrics.timeCallback("render." + scale + "x.z" + tile.z,
-                                                 function(err, data, headers) {
-        queueSubtiles(jobs, task, tile);
+                                                function(err, data, headers) {
+        queueSubtiles(queue, task, tile);
 
-        if (err) {
-          console.warn("render:", err);
+        if (!err) {
+          // TODO configurable max-age
+          headers["Cache-Control"] = "public,max-age=300";
+
+          // TODO if image was solid (and transparent), register an S3 redirect
+          // instead of uploading:
+          // http://stackoverflow.com/questions/2272835/amazon-s3-object-redirect
+          // tilelive-mapnik does not currently expose whether that's the case,
+          // although it knows:
+          // https://github.com/mapbox/tilelive-mapnik/blob/master/lib/render.js#L91
+          // NOTE: 334 is the size of a 256x256 transparent tile
+
+          // NOTE: no callback here--fire and forget
+          upload(path, headers, data);
         }
 
         // claim that we're done and let the upload take care of itself
-        done(err);
-
-        // TODO configurable max-age
-        headers["Cache-Control"] = "public,max-age=300";
-        headers["x-amz-acl"] = "public-read";
-        headers["x-amz-storage-class"] = "REDUCED_REDUNDANCY";
-
-        // TODO if image was solid (and transparent), register an S3 redirect
-        // instead of uploading:
-        // http://stackoverflow.com/questions/2272835/amazon-s3-object-redirect
-        // tilelive-mapnik does not currently expose whether that's the case,
-        // although it knows:
-        // https://github.com/mapbox/tilelive-mapnik/blob/master/lib/render.js#L91
-        // NOTE: 334 is the size of a 256x256 transparent tile
-
-        return upload(path, headers, data);
+        return done(err);
       }));
     }, callback);
-  });
-});
+  };
+};
 
-if (!process.env.DYNO || process.env.DYNO === "worker.1") {
-  // log locally / on the first worker
-  setInterval(function() {
-
-    async.parallel({
-      queued: function(done) { jobs.inactiveCount(done); },
-      active: function(done) { jobs.activeCount(done); },
-    }, function(err, counts) {
-      metrics.updateGauge("jobs.pending_uploads", pendingUploads);
-      metrics.updateGauge("jobs.queued", counts.queued);
-      metrics.updateGauge("jobs.active", counts.active);
-
-      console.log("=======================");
-      console.log("  %d pending upload(s)", pendingUploads);
-      console.log("  %d queued job(s)", counts.queued);
-      console.log("  %d active job(s)", counts.active);
-      console.log("=======================");
-    });
-  }, 5000).unref();
-}

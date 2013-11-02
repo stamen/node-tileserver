@@ -2,7 +2,8 @@
 
 "use strict";
 
-var util = require("util");
+var path = require("path"),
+    util = require("util");
 
 var async = require("async"),
     env = require("require-env"),
@@ -13,10 +14,6 @@ var q = require("../lib/queue"),
     tbd = require("../lib");
 
 var DEBUG = !!process.env.DEBUG;
-
-var merc = new SphericalMercator({
-  size: process.env.TILE_SIZE || 256
-});
 
 var argv = require("optimist")
     .usage("Usage: $0 -b=<bbox> -z <min zoom> -Z <max zoom>")
@@ -31,8 +28,9 @@ var argv = require("optimist")
     .demand(["b", "z", "Z"])
     .argv;
 
-// first arg is a placeholder for options
-tbd.loadInfo({}, function(err, info) {
+tbd.loadInfo({
+  path: path.join(process.cwd(), "stylesheet.xml")
+}, function(err, info) {
   if (err) {
     console.error(err.stack);
     process.exit(1);
@@ -60,6 +58,10 @@ tbd.loadInfo({}, function(err, info) {
     var task = xy;
     task.z = zoom;
 
+    if (DEBUG) {
+      console.log(task);
+    }
+
     if (argv.retina) {
       task.path = util.format("/%d/%d/%d@2x.png", task.z, task.x, task.y);
     } else {
@@ -70,7 +72,7 @@ tbd.loadInfo({}, function(err, info) {
     task.bbox = bbox;
     task.maxZoom = maxZoom;
     task.retina = !!argv.retina;
-    task.metaTile = info.metatile;
+    task.metatile = +info.metatile;
     task.style = info.name;
 
     queue.push(task, bar.tick.bind(bar));
@@ -92,10 +94,6 @@ tbd.loadInfo({}, function(err, info) {
 
 var createQueue = function(styleName, queue) {
   return async.queue(function(task, callback) {
-    if (DEBUG) {
-      console.log("Queuing", task);
-    }
-
     return queue
       .create(styleName, task)
       .priority(0)
