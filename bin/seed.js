@@ -52,7 +52,7 @@ tbd.loadInfo({
         incomplete: " ",
         width: 72
       }),
-      queue = createQueue(info.name, q.createQueue());
+      queue = createQueue(q.createQueue(info.name));
 
   return metaTiles(range, info, function(xy, callback) {
     var task = xy;
@@ -92,10 +92,10 @@ tbd.loadInfo({
   });
 });
 
-var createQueue = function(styleName, queue) {
+var createQueue = function(queue) {
   return async.queue(function(task, callback) {
     return queue
-      .create(styleName, task)
+      .create(task)
       .priority(0)
       .attempts(5)
       .save(callback);

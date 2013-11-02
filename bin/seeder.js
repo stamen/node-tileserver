@@ -49,9 +49,9 @@ tbd.getSources({
 
   console.log(info);
 
-  var queue = q.createQueue();
+  var queue = q.createQueue(info.name);
 
-  queue.process(info.name, os.cpus().length * 4, createWorker(sources, info, queue));
+  queue.process(os.cpus().length * 4, createWorker(sources, info, queue));
 
   if (!process.env.DYNO || process.env.DYNO === "worker.1") {
     // log locally / on the first worker
@@ -112,7 +112,7 @@ var queueSubtiles = function(jobs, task, tile) {
       x.style = task.style;
 
       jobs
-        .create(x.style, x)
+        .create(x)
         .priority(x.z)
         .attempts(5)
         .save();
