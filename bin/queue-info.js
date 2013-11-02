@@ -4,35 +4,17 @@
 var AWS = require("aws-sdk"),
     env = require("require-env");
 
+// TODO get this from the stylesheet
 var STYLE_NAME = env.require("STYLE_NAME");
 
-// TODO pull from environment
-AWS.config.update({region: "us-east-1"});
+AWS.config.update({
+  region: process.env.AWS_DEFAULT_REGION || "us-east-1"
+});
 
 var sqs = new AWS.SQS();
 
-// sqs.createQueue({
-//   QueueName: "render-" + STYLE_NAME,
-//   Attributes: {
-//     VisibilityTimeout: "180"
-//   }
-// }, function(err, data) {
-//   if (err) {
-//     throw err;
-//   }
-// 
-//   sqs.deleteQueue({
-//     QueueUrl: data.QueueUrl
-//   }, function(err, data) {
-//     console.log(arguments);
-//   });
-// });
-
-sqs.createQueue({
-  QueueName: STYLE_NAME,
-  Attributes: {
-    VisibilityTimeout: "150"
-  }
+sqs.getQueueUrl({
+  QueueName: STYLE_NAME
 }, function(err, data) {
   if (err) {
     throw err;
