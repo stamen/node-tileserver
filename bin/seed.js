@@ -46,7 +46,7 @@ tbd.loadInfo({
   console.log("Rendering [%s] from z%d-%d", bbox.join(", "), zoom, maxZoom);
 
   var range = merc.xyz(bbox, zoom),
-      tileCount = (1 + range.maxX - range.minX) * (1 + range.maxY - range.minY) / (info.metatile * info.metatile),
+      tileCount = Math.ceil((1 + range.maxX - range.minX) * (1 + range.maxY - range.minY) / (info.metatile * info.metatile)),
       bar = new ProgressBar(util.format("%s [:bar] :percent :etas", info.name), {
         total: tileCount,
         incomplete: " ",
