@@ -23,7 +23,9 @@ app.configure("development", function() {
 // filenames to work, we should probably chdir to the directory containing the
 // stylesheet (once it's configurable)
 renderer.initialize({
-  maxAge: 3600 // TODO configurable, note that it can come from the stylesheet
+  maxAge: 3600, // TODO configurable, note that it can come from the stylesheet
+  surrogateControl: "max-age=2592000",
+  surrogateKey: "{{info.name}} {{tile.z}} {{info.name}}/{{tile.z}}"
 }, function(err, routes, info) {
   app.use(routes);
 
