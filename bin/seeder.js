@@ -219,8 +219,17 @@ var createWorker = function(sources, info, queue) {
         queueSubtiles(queue, task, tile);
 
         if (!err) {
-          // TODO configurable max-age
-          headers["Cache-Control"] = "public,max-age=300";
+          // TODO configurable max-age / Surrogate headers
+          // renderer allows max-age to be set as info.maxAge, so that should
+          // be respected as should the rest
+          // Surrogate-Key could be {{mustached}}
+          headers["Cache-Control"] = "public,max-age=3600";
+          headers["x-amz-meta-Surrogate-Control"] = "max-age=2592000";
+          headers["x-amz-meta-Surrogate-Key"] = [
+            info.name,
+            "z" + tile.z,
+            [info.name, "z" + tile.z].join("/")
+          ].join(" ");
 
           // TODO if image was solid (and transparent), register an S3 redirect
           // instead of uploading:

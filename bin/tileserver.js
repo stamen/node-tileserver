@@ -23,7 +23,7 @@ app.configure("development", function() {
 // filenames to work, we should probably chdir to the directory containing the
 // stylesheet (once it's configurable)
 renderer.initialize({
-  maxAge: 300 // TODO configurable
+  maxAge: 3600 // TODO configurable, note that it can come from the stylesheet
 }, function(err, routes, info) {
   app.use(routes);
 
