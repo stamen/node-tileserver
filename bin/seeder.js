@@ -211,6 +211,33 @@ var createWorker = function(sources, info, queue) {
         console.log("rendering", path);
       }
 
+      if (info.interactivity_layer) {
+        // TODO success of this job does not depend on completion of the grid
+        // render
+        source.getGrid(tile.z, tile.x, tile.y,
+                       metrics.timeCallback("render.grid" + scale + "x.z" + tile.z,
+                                            function(err, data, headers) {
+          if (!err) {
+            // TODO configurable max-age / Surrogate headers
+            // renderer allows max-age to be set as info.maxAge, so that should
+            // be respected as should the rest
+            // Surrogate-Key could be {{mustached}}
+            // TODO spend some more time thinking about surrogate keys (format,
+            // retina, various combinations)
+            headers["Cache-Control"] = "public,max-age=3600";
+            headers["x-amz-meta-Surrogate-Control"] = "max-age=2592000";
+            headers["x-amz-meta-Surrogate-Key"] = [
+              info.name,
+              "z" + tile.z,
+              [info.name, "z" + tile.z].join("/"),
+              "json"
+            ].join(" ");
+
+            upload(util.format("/%d/%d/%d.json", tile.z, tile.x, tile.y), headers, data);
+          }
+        }));
+      }
+
       // TODO check if it's already in S3 before rendering (for slow tiles?)
       // TODO when this is rendering a metatile, it would be nice to get back
       // a list of the other tiles that got rendered so we can fetch them
@@ -230,7 +257,8 @@ var createWorker = function(sources, info, queue) {
           headers["x-amz-meta-Surrogate-Key"] = [
             info.name,
             "z" + tile.z,
-            [info.name, "z" + tile.z].join("/")
+            [info.name, "z" + tile.z].join("/"),
+            "png"
           ].join(" ");
 
           // TODO if image was solid (and transparent), register an S3 redirect

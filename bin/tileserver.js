@@ -25,7 +25,7 @@ app.configure("development", function() {
 renderer.initialize({
   maxAge: 3600, // TODO configurable, note that it can come from the stylesheet
   surrogateControl: "max-age=2592000",
-  surrogateKey: "{{info.name}} {{tile.z}} {{info.name}}/{{tile.z}}"
+  surrogateKey: "{{info.name}} {{tile.z}} {{info.name}}/{{tile.z}} {{info.format}}"
 }, function(err, routes, info) {
   app.use(routes);
 
