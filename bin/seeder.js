@@ -215,7 +215,7 @@ var createWorker = function(sources, info, queue) {
         // TODO success of this job does not depend on completion of the grid
         // render
         source.getGrid(tile.z, tile.x, tile.y,
-                       metrics.timeCallback("render.grid" + scale + "x.z" + tile.z,
+                       metrics.timeCallback("render.grid.z" + tile.z,
                                             function(err, data, headers) {
           if (!err) {
             // TODO configurable max-age / Surrogate headers
@@ -233,7 +233,7 @@ var createWorker = function(sources, info, queue) {
               "json"
             ].join(" ");
 
-            upload(util.format("/%d/%d/%d.json", tile.z, tile.x, tile.y), headers, data);
+            upload(util.format("/%d/%d/%d.json", tile.z, tile.x, tile.y), headers, JSON.stringify(data));
           }
         }));
       }
