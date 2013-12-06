@@ -199,6 +199,8 @@ var createWorker = function(sources, info, queue) {
     return async.each(tiles, function(tile, done) {
       var path;
 
+      // TODO use info.format for this (and simplify so that the correct
+      // extension is actually chosen)
       if (task.retina) {
         path = util.format("/%d/%d/%d@2x.png", tile.z, tile.x, tile.y);
       } else {
